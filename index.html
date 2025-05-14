@@ -1,13 +1,90 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>会社トップページデザイン</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div id="app"></div>
-    <script src="app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Homepage</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
+    <script type="text/javascript">
+      const { useEffect, useRef } = React;
+      const { motion } = window["framer-motion"];
+
+      const HomePage = () => {
+        const line1 = useRef(null);
+        const line2 = useRef(null);
+
+        useEffect(() => {
+          const animateLines = () => {
+            line1.current.style.transform = "translateX(0)";
+            line2.current.style.transform = "translateX(0)";
+          };
+          setTimeout(animateLines, 500);
+        }, []);
+
+        return (
+          <div className="relative w-full h-screen bg-gradient-to-r from-blue-500 to-blue-700 overflow-hidden">
+            <nav className="absolute top-0 w-full p-5 flex justify-between text-white">
+              <div className="text-2xl font-bold">My Company</div>
+              <ul className="flex gap-5">
+                <li>ホーム</li>
+                <li>サービス</li>
+                <li>会社情報</li>
+                <li>お問い合わせ</li>
+              </ul>
+            </nav>
+
+            <motion.div
+              ref={line1}
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              transition={{ duration: 1.5 }}
+              className="absolute top-1/2 left-0 w-[5px] h-full bg-white"
+            />
+            <motion.div
+              ref={line2}
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              transition={{ duration: 1.5 }}
+              className="absolute top-1/2 right-0 w-[5px] h-full bg-white"
+            />
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5, duration: 1 }}
+              className="flex justify-center items-center h-full"
+            >
+              <img
+                src="./logo.png"
+                alt="Company Logo"
+                width={300}
+                height={300}
+                className="object-contain"
+              />
+            </motion.div>
+
+            <div className="absolute bottom-20 w-full text-center text-white">
+              <h1 className="text-4xl font-bold">
+                未来へつなぐ物流イノベーション
+              </h1>
+              <p className="mt-3">
+                効率的な物流管理であなたのビジネスを次のステージへ
+              </p>
+            </div>
+          </div>
+        );
+      };
+
+      ReactDOM.render(<HomePage />, document.getElementById("root"));
+    </script>
+  </body>
 </html>
