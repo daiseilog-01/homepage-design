@@ -6,7 +6,7 @@
     <title>Company Homepage</title>
     <style>
       body {
-        background-color: white;
+        background: linear-gradient(135deg, #f3f4f6, #ffffff);
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
@@ -32,21 +32,24 @@
       nav ul li a {
         color: white;
         text-decoration: none;
+        font-size: 18px;
       }
       .line {
         position: absolute;
         width: 10px;
         height: 100%;
         background-color: #007bff;
-        transition: transform 1s ease;
+        transition: transform 1.2s ease, height 0.8s ease;
       }
       .line1 {
-        left: 30%;
-        transform: translateX(-100%);
+        left: 40%;
+        transform: translateX(-100%) rotate(30deg);
+        height: 0;
       }
       .line2 {
-        left: 70%;
-        transform: translateX(100%);
+        left: 60%;
+        transform: translateX(100%) rotate(-30deg);
+        height: 0;
       }
       .logo-container {
         opacity: 0;
@@ -86,6 +89,10 @@
         color: white;
         border: none;
         cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .contact-form button:hover {
+        background-color: #005bb5;
       }
     </style>
   </head>
@@ -114,12 +121,12 @@
 
     <div id="service" class="content-section bg-gray-100">
       <h2>サービス内容</h2>
-      <p>当社の物流ソリューションは、効率的で安全な流通管理を提供します。</p>
+      <p>当社の物流ソリューションは、効率的で安全な流通管理を提供します１５４７。</p>
     </div>
 
     <div id="about" class="content-section">
       <h2>会社情報</h2>
-      <p>全国に広がるネットワークで信頼される物流パートナーです。１５４２</p>
+      <p>全国に広がるネットワークで信頼される物流パートナーです。</p>
     </div>
 
     <div id="contact" class="content-section bg-gray-100">
@@ -136,11 +143,15 @@
       window.onload = function () {
         const line1 = document.getElementById('line1');
         const line2 = document.getElementById('line2');
-        line1.style.transform = 'translateX(0)';
-        line2.style.transform = 'translateX(0)';
+        line1.style.height = '100%';
+        line2.style.height = '100%';
+        setTimeout(() => {
+          line1.style.transform = 'translateX(0) rotate(0deg)';
+          line2.style.transform = 'translateX(0) rotate(0deg)';
+        }, 800);
         setTimeout(() => {
           document.getElementById('logoContainer').classList.add('visible');
-        }, 1000);
+        }, 1500);
       };
     </script>
   </body>
