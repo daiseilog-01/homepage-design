@@ -1,0 +1,36 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+}
+
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.line {
+  position: absolute;
+  width: 5px;
+  height: 100vh;
+  background-color: blue;
+}
+
+#line1 {
+  left: -100px;
+  animation: slideIn 1.5s forwards;
+}
+
+#line2 {
+  right: -100px;
+  animation: slideIn 1.5s forwards;
+}
+
+@keyframes slideIn {
+  to {
+    left: 0;
+    right: 0;
+  }
+}
