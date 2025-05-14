@@ -42,26 +42,56 @@
         align-items: center;
         height: 100vh;
         overflow: hidden;
+        position: relative;
       }
       .logo {
-        width: 0;
-        height: 0;
-        border-left: 150px solid transparent;
-        border-right: 150px solid transparent;
-        border-bottom: 200px solid #007bff;
-        animation: drawLogo 1.5s forwards;
+        width: 300px;
+        height: auto;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: opacity 1.5s ease, transform 1.5s ease;
+        position: relative;
+        z-index: 2;
+      }
+      .logo.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .shine {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(45deg);
+        animation: shineEffect 3s linear infinite;
+        z-index: 1;
       }
 
-      @keyframes drawLogo {
-        to {
-          width: 300px;
-          height: 300px;
-          border-left-width: 0;
-          border-right-width: 0;
-          border-bottom-width: 0;
-          background-color: #007bff;
-          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      @keyframes shineEffect {
+        0% {
+          transform: translate(-150%, -150%) rotate(45deg);
         }
+        100% {
+          transform: translate(150%, 150%) rotate(45deg);
+        }
+      }
+
+      /* ボタンホバーエフェクト */
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+        box-shadow: 0 4px 15px rgba(0, 91, 179, 0.5);
       }
 
       .content-section {
@@ -99,7 +129,8 @@
     </nav>
 
     <div class="logo-container">
-      <div class="logo"></div>
+      <div class="shine"></div>
+      <img src="./logo.png" alt="Company Logo" class="logo" id="mainLogo" />
     </div>
 
     <div id="service" class="content-section bg-gray-100">
@@ -124,6 +155,11 @@
 
     <script>
       window.onload = function () {
+        const logo = document.getElementById("mainLogo");
+        setTimeout(() => {
+          logo.classList.add("visible");
+        }, 300);
+
         const sections = document.querySelectorAll(".content-section");
         const observer = new IntersectionObserver(
           (entries) => {
