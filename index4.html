@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Company Homepage - Version 4</title>
+    <title>Company Homepage - Version 3</title>
     <style>
       /* ベーススタイル */
       body {
@@ -113,34 +113,11 @@
         margin-bottom: 10px;
       }
 
-      /* モバイル対応の調整 */
-      @media (max-width: 768px) {
-        nav ul {
-          flex-direction: column;
-          background-color: #ffffff;
-          position: absolute;
-          top: 60px;
-          width: 100%;
-          display: none;
-        }
-
-        nav ul.active {
-          display: flex;
-        }
-
-        nav ul li {
-          margin: 10px 0;
-        }
-
-        nav ul li a {
-          font-size: 20px;
-        }
-
-        .service-item {
-          width: 90%;
-        }
+      /* インターセクションオブザーバーによる表示 */
+      .visible {
+        opacity: 1;
+        transform: translateY(0);
       }
-
     </style>
   </head>
   <body>
@@ -177,5 +154,17 @@
       </div>
     </section>
 
+    <script>
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach(section => observer.observe(section));
+    </script>
   </body>
 </html>
