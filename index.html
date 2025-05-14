@@ -13,78 +13,23 @@
         background-color: #0e0e0e;
       }
 
-      /* 光の粒子背景 */
-      #particles {
+      #main-frame {
         position: absolute;
         width: 100%;
         height: 100%;
-        background: radial-gradient(circle, rgba(34, 34, 34, 1) 0%, rgba(14, 14, 14, 1) 100%);
-        overflow: hidden;
         z-index: 1;
       }
 
-      .particle {
-        position: absolute;
-        width: 2px;
-        height: 2px;
-        background-color: rgba(255, 255, 255, 0.6);
-        border-radius: 50%;
-        animation: floatParticle 20s linear infinite;
-      }
-
-      @keyframes floatParticle {
-        0% {
-          transform: translateY(100vh);
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(-10vh);
-          opacity: 0;
-        }
-      }
-
-      /* 光のラインエフェクト */
-      .glow-line {
-        position: absolute;
-        width: 3px;
-        height: 100%;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
-        animation: glowMove 5s linear infinite;
-        z-index: 2;
-      }
-
-      @keyframes glowMove {
-        0% {
-          transform: translateY(-100%);
-        }
-        100% {
-          transform: translateY(100%);
-        }
-      }
-
-      /* ロゴの登場アニメーション */
-      .logo-container {
+      #logo {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        opacity: 0;
-        animation: fadeInLogo 2s ease forwards;
-        z-index: 10;
+        width: 250px;
+        height: 250px;
+        opacity: 0.8;
       }
 
-      @keyframes fadeInLogo {
-        0% {
-          opacity: 0;
-          transform: translate(-50%, -60%) scale(0.8);
-        }
-        100% {
-          opacity: 1;
-          transform: translate(-50%, -50%) scale(1);
-        }
-      }
-
-      /* モダンなナビゲーションバー */
       nav {
         position: fixed;
         top: 0;
@@ -121,55 +66,9 @@
         color: #ffb703;
       }
 
-      /* 水平スクロール構造 */
-      .horizontal-scroll {
-        display: flex;
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        height: 100vh;
-      }
-
-      .section {
-        flex: none;
-        width: 100vw;
-        height: 100vh;
-        scroll-snap-align: start;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-size: 2em;
-        transition: background-color 1s ease;
-        opacity: 0;
-      }
-
-      .section.visible {
-        opacity: 1;
-        transition: opacity 1s ease-in-out;
-      }
-
-      .section:nth-child(1) {
-        background-color: #1e3a8a;
-      }
-      .section:nth-child(2) {
-        background-color: #3b82f6;
-      }
-      .section:nth-child(3) {
-        background-color: #0e7490;
-      }
-
     </style>
   </head>
   <body>
-    <div id="particles"></div>
-    <div class="glow-line" style="left: 20%"></div>
-    <div class="glow-line" style="left: 50%"></div>
-    <div class="glow-line" style="left: 80%"></div>
-
-    <div class="logo-container">
-      <img src="./logo.png" alt="Company Logo" width="250" height="250" />
-    </div>
-
     <nav>
       <div>My Company</div>
       <ul>
@@ -179,36 +78,7 @@
       </ul>
     </nav>
 
-    <div class="horizontal-scroll">
-      <div id="service" class="section">サービス内容</div>
-      <div id="about" class="section">会社情報</div>
-      <div id="contact" class="section">お問い合わせ</div>
-    </div>
+    <object id="main-frame" data="./Desktop_with_glow_timed_sequence_logo_glow.svg" type="image/svg+xml"></object>
 
-    <script>
-      const particleContainer = document.getElementById('particles');
-      for (let i = 0; i < 100; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDuration = 10 + Math.random() * 10 + 's';
-        particle.style.animationDelay = Math.random() * 10 + 's';
-        particleContainer.appendChild(particle);
-      }
-
-      // セクションの表示アニメーション
-      const sections = document.querySelectorAll('.section');
-      const navItems = document.querySelectorAll('nav ul li');
-
-      window.addEventListener('scroll', () => {
-        sections.forEach((section, index) => {
-          const rect = section.getBoundingClientRect();
-          if (rect.left >= 0 && rect.left < window.innerWidth / 2) {
-            navItems.forEach(link => link.classList.remove('active'));
-            navItems[index].classList.add('active');
-          }
-        });
-      });
-    </script>
   </body>
 </html>
