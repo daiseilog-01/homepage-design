@@ -41,10 +41,16 @@
         align-items: center;
         background-color: #007bff;
         color: white;
-      }
-      .intro h1 {
         font-size: 3em;
-        margin: 0;
+        animation: fadeIn 1s forwards;
+      }
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
       }
       .content-section {
         padding: 100px 20px;
@@ -73,8 +79,8 @@
       </ul>
     </nav>
 
-    <div class="intro">
-      <h1>Welcome to Our Company</h1>
+    <div class="intro" id="introSection">
+      Welcome to Our Company
     </div>
 
     <div id="service" class="content-section bg-gradient">
@@ -92,4 +98,21 @@
       <form>
         <input type="text" placeholder="お名前" required /><br />
         <input type="email" placeholder="メールアドレス" required /><br />
-        <textarea placeholder="ご質問内容" rows="5" required></textarea><
+        <textarea placeholder="ご質問内容" rows="5" required></textarea><br />
+        <button type="submit">送信する</button>
+      </form>
+    </div>
+
+    <script>
+      window.onload = function () {
+        setTimeout(() => {
+          document.getElementById("introSection").style.opacity = "0";
+          setTimeout(() => {
+            document.getElementById("introSection").style.display = "none";
+            window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+          }, 500);
+        }, 3000);
+      };
+    </script>
+  </body>
+</html>
