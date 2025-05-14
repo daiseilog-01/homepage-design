@@ -52,6 +52,10 @@
         height: 0;
       }
       .logo-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         opacity: 0;
         transition: opacity 1s ease 1.5s;
       }
@@ -109,19 +113,20 @@
     <div class="line line1" id="line1"></div>
     <div class="line line2" id="line2"></div>
 
-    <div class="flex justify-center items-center h-full logo-container" id="logoContainer">
+    <div class="logo-container" id="logoContainer">
       <img
         src="./logo.png"
         alt="Company Logo"
-        width="300"
-        height="300"
-        class="object-contain"
+        style="
+          max-width: 300px;
+          height: auto;
+        "
       />
     </div>
 
     <div id="service" class="content-section bg-gray-100">
       <h2>サービス内容</h2>
-      <p>当社の物流ソリューションは、効率的で安全な流通管理を提供します１５４７。</p>
+      <p>当社の物流ソリューションは、効率的で安全な流通管理を提供します。１６３９</p>
     </div>
 
     <div id="about" class="content-section">
