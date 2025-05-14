@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Homepage - Version 4</title>
+    <style>
+      /* ベーススタイル */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        scroll-behavior: smooth;
+      }
+
+      /* ナビゲーション */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        margin: 0;
+        padding: 15px 0;
+      }
+
+      nav ul li {
+        margin: 0 20px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        transition: color 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: #007bff;
+      }
+
+      nav ul li.active a {
+        color: #007bff;
+        border-bottom: 2px solid #007bff;
+      }
+
+      /* セクションスタイル */
+      section {
+        min-height: 100vh;
+        padding: 100px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      #hero {
+        background-color: #007bff;
+        color: white;
+      }
+
+      #services {
+        background-color: #e9ecef;
+      }
+
+      #about {
+        background-color: #ffffff;
+      }
+
+      #contact {
+        background-color: #e9ecef;
+      }
+
+      /* アイコンと詳細表示 */
+      .service-item {
+        display: inline-block;
+        width: 250px;
+        margin: 20px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      .service-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .service-item img {
+        width: 60px;
+        margin-bottom: 10px;
+      }
+
+      /* モバイル対応の調整 */
+      @media (max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+          background-color: #ffffff;
+          position: absolute;
+          top: 60px;
+          width: 100%;
+          display: none;
+        }
+
+        nav ul.active {
+          display: flex;
+        }
+
+        nav ul li {
+          margin: 10px 0;
+        }
+
+        nav ul li a {
+          font-size: 20px;
+        }
+
+        .service-item {
+          width: 90%;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#hero">ホーム</a></li>
+        <li><a href="#services">サービス</a></li>
+        <li><a href="#about">会社情報</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <section id="hero" class="visible">
+      <h1>ようこそ、私たちの会社へ</h1>
+      <p>未来に向けたスマートな物流ソリューションを提供します。</p>
+    </section>
+
+    <section id="services">
+      <h2>サービス内容</h2>
+      <div class="service-item">
+        <img src="https://via.placeholder.com/60" alt="物流管理" />
+        <h3>物流管理</h3>
+        <p>倉庫管理から配送手配まで効率化します。</p>
+      </div>
+      <div class="service-item">
+        <img src="https://via.placeholder.com/60" alt="在庫管理" />
+        <h3>在庫管理</h3>
+        <p>リアルタイムで在庫の確認と更新が可能です。</p>
+      </div>
+      <div class="service-item">
+        <img src="https://via.placeholder.com/60" alt="配送追跡" />
+        <h3>配送追跡</h3>
+        <p>商品の位置情報をリアルタイムで把握できます。</p>
+      </div>
+    </section>
+
+  </body>
+</html>
