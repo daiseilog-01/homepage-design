@@ -36,15 +36,49 @@
         text-decoration: none;
         font-size: 18px;
       }
-      .loading-screen {
+      .logo-container {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-color: #007bff;
-        color: white;
-        font-size: 3em;
+        overflow: hidden;
+        position: relative;
       }
+      .logo {
+        width: 300px;
+        height: auto;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: opacity 1.5s ease, transform 1.5s ease;
+        position: relative;
+        z-index: 2;
+      }
+      .logo.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .shine {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(45deg);
+        animation: shineEffect 3s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes shineEffect {
+        0% {
+          transform: translate(-150%, -150%) rotate(45deg);
+        }
+        100% {
+          transform: translate(150%, 150%) rotate(45deg);
+        }
+      }
+
       .content-section {
         padding: 100px 20px;
         text-align: center;
@@ -79,8 +113,9 @@
       </ul>
     </nav>
 
-    <div class="loading-screen" id="loadingScreen">
-      Loading...
+    <div class="logo-container">
+      <div class="shine"></div>
+      <img src="./logo.png" alt="Company Logo" class="logo" id="mainLogo" />
     </div>
 
     <div id="service" class="content-section bg-gray-100">
@@ -105,6 +140,11 @@
 
     <script>
       window.onload = function () {
+        const logo = document.getElementById("mainLogo");
+        setTimeout(() => {
+          logo.classList.add("visible");
+        }, 300);
+
         const sections = document.querySelectorAll(".content-section");
         const observer = new IntersectionObserver(
           (entries) => {
@@ -117,11 +157,6 @@
           { threshold: 0.2 }
         );
         sections.forEach((section) => observer.observe(section));
-
-        // Loading screen removal
-        setTimeout(() => {
-          document.getElementById("loadingScreen").style.display = "none";
-        }, 1500);
       };
     </script>
   </body>
