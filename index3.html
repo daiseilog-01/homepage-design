@@ -6,23 +6,42 @@
     <title>Company Homepage</title>
     <style>
       body {
-        background: linear-gradient(135deg, #e0eafc, #cfdef3);
+        background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+        background-size: 200% 200%;
+        animation: gradientAnimation 15s ease infinite;
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
         overflow-x: hidden;
       }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
       nav {
         position: fixed;
         top: 0;
         width: 100%;
-        background-color: rgba(51, 51, 51, 0.8);
+        background-color: rgba(30, 58, 138, 0.8);
         color: white;
         display: flex;
         justify-content: space-between;
         padding: 15px 30px;
         z-index: 1000;
         backdrop-filter: blur(5px);
+        transition: background-color 0.3s ease;
+      }
+      nav.scrolled {
+        background-color: rgba(59, 130, 246, 0.9);
       }
       nav ul {
         list-style: none;
@@ -57,17 +76,35 @@
         opacity: 1;
         transform: scale(1);
       }
-      .shine {
+
+      /* ロゴのスクロール連動エフェクト */
+      .logo-container.scrolled {
+        transform: translateY(-30px);
+        transition: transform 0.3s ease;
+      }
+
+      /* パララックスエフェクト */
+      .parallax {
+        background-image: url('https://source.unsplash.com/1600x900/?warehouse');
+        height: 400px;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-bottom: 50px;
+        filter: brightness(0.8);
+      }
+
+      /* ロゴの光の反射エフェクト */
+      .logo-container::before {
         content: "";
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
+        width: 100px;
+        height: 100px;
         background: rgba(255, 255, 255, 0.2);
-        transform: rotate(45deg);
-        animation: shineEffect 3s linear infinite;
-        z-index: 1;
+        filter: blur(15px);
+        border-radius: 50%;
+        animation: shineEffect 5s linear infinite;
       }
 
       @keyframes shineEffect {
@@ -79,32 +116,22 @@
         }
       }
 
+      /* セクションのスライドインエフェクト */
       .content-section {
-        padding: 100px 20px;
-        text-align: center;
         opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
       }
+
       .content-section.visible {
         opacity: 1;
         transform: translateY(0);
       }
-      .content-section h2 {
-        font-size: 2em;
-        margin-bottom: 20px;
-      }
-      .content-section p {
-        font-size: 1.2em;
-        color: #333;
-      }
-      .bg-gray-100 {
-        background-color: #f9f9f9;
-      }
+
     </style>
   </head>
   <body>
-    <nav>
+    <nav id="navbar">
       <div class="text-2xl font-bold">My Company</div>
       <ul>
         <li><a href="#service">サービス</a></li>
@@ -113,10 +140,11 @@
       </ul>
     </nav>
 
-    <div class="logo-container">
-      <div class="shine"></div>
+    <div class="logo-container" id="logoContainer">
       <img src="./logo.png" alt="Company Logo" class="logo" id="mainLogo" />
     </div>
+
+    <div class="parallax"></div>
 
     <div id="service" class="content-section bg-gray-100">
       <h2>サービス内容</h2>
@@ -130,11 +158,11 @@
 
     <div id="contact" class="content-section bg-gray-100">
       <h2>お問い合わせ</h2>
-      <form class="contact-form">
+      <form class="contact-form" id="contactForm">
         <input type="text" placeholder="お名前" required />
         <input type="email" placeholder="メールアドレス" required />
         <textarea placeholder="ご質問内容" rows="5" required></textarea>
-        <button type="submit">送信する</button>
+        <button class="btn" type="submit">送信する</button>
       </form>
     </div>
 
@@ -146,17 +174,25 @@
         }, 300);
 
         const sections = document.querySelectorAll(".content-section");
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-              }
-            });
-          },
-          { threshold: 0.2 }
-        );
-        sections.forEach((section) => observer.observe(section));
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
+
+        // ロゴのスクロール連動
+        window.addEventListener("scroll", () => {
+          const logoContainer = document.getElementById("logoContainer");
+          if (window.scrollY > 100) {
+            logoContainer.classList.add("scrolled");
+          } else {
+            logoContainer.classList.remove("scrolled");
+          }
+        });
       };
     </script>
   </body>
