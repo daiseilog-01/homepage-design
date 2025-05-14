@@ -6,19 +6,22 @@
     <title>Company Homepage</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" />
     <style>
+      body {
+        background-color: white;
+      }
       .line {
         position: absolute;
         width: 5px;
         height: 100%;
-        background-color: white;
+        background-color: black;
         transition: transform 1.5s ease;
       }
       .line1 {
-        left: 0;
+        left: 40%;
         transform: translateX(-100%);
       }
       .line2 {
-        right: 0;
+        left: 60%;
         transform: translateX(100%);
       }
       .logo-container {
@@ -28,11 +31,31 @@
       .logo-container.visible {
         opacity: 1;
       }
+      .content-section {
+        padding: 50px 0;
+        text-align: center;
+      }
+      .content-section h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+      .content-section p {
+        font-size: 1.2em;
+        color: #333;
+      }
+      @media screen and (max-width: 768px) {
+        .line1 {
+          left: 30%;
+        }
+        .line2 {
+          left: 70%;
+        }
+      }
     </style>
   </head>
   <body>
-    <div class="relative w-full h-screen bg-gradient-to-r from-blue-500 to-blue-700 overflow-hidden">
-      <nav class="absolute top-0 w-full p-5 flex justify-between text-white">
+    <div class="relative w-full h-screen overflow-hidden">
+      <nav class="absolute top-0 w-full p-5 flex justify-between text-black">
         <div class="text-2xl font-bold">My Company</div>
         <ul class="flex gap-5">
           <li>ホーム</li>
@@ -54,11 +77,21 @@
           class="object-contain"
         />
       </div>
+    </div>
 
-      <div class="absolute bottom-20 w-full text-center text-white">
-        <h1 class="text-4xl font-bold">未来へつなぐ物流イノベーション</h1>
-        <p class="mt-3">効率的な物流管理であなたのビジネスを次のステージへ1518</p>
-      </div>
+    <div class="content-section bg-gray-100">
+      <h2>サービス内容</h2>
+      <p>当社の物流ソリューションは、効率的で安全な流通管理を提供します。</p>
+    </div>
+
+    <div class="content-section">
+      <h2>会社情報</h2>
+      <p>全国に広がるネットワークで信頼される物流パートナーです。</p>
+    </div>
+
+    <div class="content-section bg-gray-100">
+      <h2>お問い合わせ</h2>
+      <p>ご質問やご相談がございましたら、お気軽にお問い合わせください。</p>
     </div>
 
     <script>
