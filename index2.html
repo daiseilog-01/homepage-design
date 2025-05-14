@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Homepage - パターン 2</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #e0eafc, #cfdef3);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #333;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 30px;
+        z-index: 1000;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+      }
+      .intro {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #007bff;
+        color: white;
+      }
+      .intro h1 {
+        font-size: 3em;
+        margin: 0;
+      }
+      .content-section {
+        padding: 100px 20px;
+        text-align: center;
+      }
+      .content-section h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+      .content-section p {
+        font-size: 1.2em;
+        color: #333;
+      }
+      .content-section.bg-gradient {
+        background: linear-gradient(135deg, #f0f2f5, #ffffff);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="text-2xl font-bold">My Company - パターン 2</div>
+      <ul>
+        <li><a href="#service">サービス</a></li>
+        <li><a href="#about">会社情報</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <div class="intro">
+      <h1>Welcome to Our Company</h1>
+    </div>
+
+    <div id="service" class="content-section bg-gradient">
+      <h2>サービス内容</h2>
+      <p>当社の物流ソリューションは、効率的で安全な流通管理を提供します。</p>
+    </div>
+
+    <div id="about" class="content-section">
+      <h2>会社情報</h2>
+      <p>全国に広がるネットワークで信頼される物流パートナーです。</p>
+    </div>
+
+    <div id="contact" class="content-section bg-gradient">
+      <h2>お問い合わせ</h2>
+      <form>
+        <input type="text" placeholder="お名前" required /><br />
+        <input type="email" placeholder="メールアドレス" required /><br />
+        <textarea placeholder="ご質問内容" rows="5" required></textarea><
