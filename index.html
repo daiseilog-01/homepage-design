@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Company Homepage - Version 1.08</title>
+    <title>Company Homepage - Version 1.09</title>
     <style>
       body {
         margin: 0;
@@ -55,6 +55,21 @@
         width: 800px;
         opacity: 0;
         transition: opacity 0.5s ease 0s;
+      }
+
+      @media screen and (max-width: 768px) {
+        #main-frame {
+          width: 150%;
+          height: 100%;
+          object-fit: cover;
+          left: -25%;
+        }
+        #navigation-panel {
+          left: 20px;
+          top: 80%;
+          width: 90%;
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
       .nav-card {
