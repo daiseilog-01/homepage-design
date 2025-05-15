@@ -115,12 +115,23 @@
       color: #333;
     }
     
-    .counter {
+/*     .counter {
       font-size: 2em;
       color: #007bff;
       margin: 10px 0;
+    } */
+    
+    /* カウンターのスタイル */
+    .counter span.value {
+      font-weight: bold;
+      font-size: 2em;
     }
-
+    
+    .counter span.unit {
+      font-size: 0.5em; /* 50%のサイズ */
+      margin-left: 5px; /* 少し離す */
+    }
+    
     /* ミッションセクション */
     #mission-section {
       position: relative;
@@ -247,13 +258,13 @@
   <section id="database-section">
     <h2>データベース</h2>
     <div class="database-content">
-      <div class="database-item">
+<!--       <div class="database-item">
         <h3>年商</h3>
         <p class="counter" data-target="141" data-unit="億">0</p>
-      </div>
+      </div> -->
       <div class="database-item">
-        <h3>倉庫面積 (坪)</h3>
-        <p class="counter" data-target="50000" data-unit="坪">0</p>
+        <h3>設立</h3>
+        <p class="counter" data-target="50" data-unit="年">0</p>
       </div>
       <div class="database-item">
         <h3>Crew数</h3>
@@ -268,8 +279,8 @@
         <p class="counter" data-target="315" data-unit="台">0</p>
       </div>
       <div class="database-item">
-        <h3>設立</h3>
-        <p class="counter" data-target="50" data-unit="年">0</p>
+        <h3>倉庫面積 (坪)</h3>
+        <p class="counter" data-target="50000" data-unit="坪">0</p>
       </div>
     </div>
   </section>
@@ -357,35 +368,35 @@
       });
     };
     
-  // 🔄 カウンター処理（スクロール時に発動）
-  document.addEventListener('DOMContentLoaded', () => {
-    const counters = document.querySelectorAll('.counter');
-    const speed = 50; // カウントアップのスピード
-  
-    // IntersectionObserver の設定
-    const counterObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const counter = entry.target;
-          const target = +counter.getAttribute('data-target');
-          const unit = counter.getAttribute('data-unit') || ""; // data-unit 取得
-          const increment = Math.ceil(target / speed);
-  
-          // カウントアップの処理
-          const updateCount = () => {
-            const count = +counter.innerText;
-            if (count < target) {
-              counter.innerText = count + increment;
-              setTimeout(updateCount, 30);
-            } else {
-              counter.innerText = `${target.toLocaleString()} ${unit}`;
-              observer.unobserve(counter); // 監視解除
-            }
-          };
-          updateCount();
-        }
+    // 🔄 カウンター処理（スクロール時に発動）
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.counter');
+      const speed = 50; // カウントアップのスピード
+    
+      // IntersectionObserver の設定
+      const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = +counter.getAttribute('data-target');
+            const unit = counter.getAttribute('data-unit') || ""; // data-unit 取得
+            const increment = Math.ceil(target / speed);
+    
+            // カウントアップの処理
+            const updateCount = () => {
+              const count = +counter.innerText.replace(/,/g, "");
+              if (count < target) {
+                counter.innerHTML = `<span class="value">${(count + increment).toLocaleString()}</span> <span class="unit">${unit}</span>`;
+                setTimeout(updateCount, 30);
+              } else {
+                counter.innerHTML = `<span class="value">${target.toLocaleString()}</span> <span class="unit">${unit}</span>`;
+                observer.unobserve(counter); // 監視解除
+              }
+            };
+            updateCount();
+          }
+        });
       });
-    });
   
       // カウンターを監視対象に追加
       counters.forEach(counter => {
