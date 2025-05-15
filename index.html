@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Company Homepage - Version 1.04</title>
+    <title>Company Homepage - Version 1.05</title>
     <style>
       body {
         margin: 0;
@@ -92,6 +92,7 @@
     <script>
       window.onload = () => {
         const logo = document.getElementById('logo');
+        const mainFrame = document.getElementById('main-frame');
 
         // ロゴの移動開始
         setTimeout(() => {
@@ -100,9 +101,19 @@
 
         // フレームとメニューのフェードイン
         setTimeout(() => {
-          document.getElementById('main-frame').style.opacity = 1;
+          mainFrame.style.opacity = 1;
+
+          // SVG内のアニメーションをリセットして再スタート
+          const svgDocument = mainFrame.contentDocument;
+          if (svgDocument) {
+            const animatedElement = svgDocument.querySelector('animate');
+            if (animatedElement) {
+              animatedElement.beginElement();
+            }
+          }
+
           document.getElementById('navigation-panel').style.opacity = 1;
-        }, 1500);
+        }, 2000);
       };
     </script>
 
