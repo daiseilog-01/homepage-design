@@ -349,7 +349,8 @@
       });
     };
     
-    // 🔄 カウンター処理（競合しないように追加）
+  // 🔄 カウンター処理（競合しないように追加）
+  document.addEventListener('DOMContentLoaded', () => {
     const counters = document.querySelectorAll('.counter');
     const speed = 50; // カウントアップのスピード
 
