@@ -478,6 +478,12 @@
       let currentIndex = 0;
       let interval;
     
+      // ✅ 修正部分：スライドの幅を計算する
+      const slideWidth = 100; // ← 100vw ずつ動かす
+    
+      // ✅ 修正部分：各スライドの幅を設定
+      slides.style.width = `${100 * slideImages.length}vw`;
+
       // 自動スライド
       const startSlideshow = () => {
         interval = setInterval(() => {
