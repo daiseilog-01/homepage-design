@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Homepage - Logistics_v1.23</title>
+  <title>Company Homepage - Logistics_v1.24</title>
   <style>
     body {
       margin: 0;
@@ -25,10 +25,20 @@
       z-index: 1000;
     }
 
+    /* 左下に流れるアニメーション */
+    #logo.move {
+      transition: all 1s ease;
+      opacity: 0;
+      transform: translate(-150%, 150%);
+    }
+
+    /*
+    // ===== 以前のフェードアウトのみのパターン =====
     #logo.move {
       transition: opacity 1s ease;
       opacity: 0;
     }
+    */
 
     /* メインフレーム */
     #main-frame {
