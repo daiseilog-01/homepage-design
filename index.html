@@ -99,16 +99,17 @@
     
     .slides {
       display: flex;
+      width: 400%; /* 全体の幅は 100% x 枚数 */
       transition: transform 1s ease;
-      width: 400%;
     }
     
     .slides img {
-      width: 100%;
+      width: 100vw; /* 各スライドは 100% の幅 */
       height: auto;
       object-fit: cover;
     }
     
+    /* 左右のナビゲーション */
     .prev, .next {
       cursor: pointer;
       position: absolute;
@@ -487,7 +488,7 @@
       // スライドの切り替え
       const showSlide = (index) => {
         currentIndex = (index + slideImages.length) % slideImages.length;
-        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        slides.style.transform = `translateX(-${currentIndex * 100}vw)`; // ← 100vw ずつずらす
         updateDots();
       };
     
