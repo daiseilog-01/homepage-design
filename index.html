@@ -126,6 +126,7 @@
       position: relative;
     }
     
+    /* タイトルとリストの余白調整 */
     .footer-column h3 {
       margin-bottom: 10px;
     }
@@ -170,14 +171,15 @@
         margin-bottom: 20px;
         padding: 0;
       }
-      .footer-column:not(:last-child)::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background-color: #d3d3d3;
+    
+      /* スマホでは横罫線に変更 */
+      .footer-column:not(:last-child) {
+        border-bottom: 1px solid #d3d3d3;
+      }
+      
+      /* 縦罫線は無効化 */
+      .footer-column::after {
+        display: none;
       }
     }
   </style>
