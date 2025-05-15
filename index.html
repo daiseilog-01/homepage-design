@@ -87,6 +87,39 @@
     .service-item {
       margin-bottom: 20px;
     }
+    
+    /* データベースセクションのスタイル */
+    #database-section {
+      background-color: #f8f9fa;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    
+    .database-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .database-item {
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .database-item h3 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+    
+    .counter {
+      font-size: 2em;
+      color: #007bff;
+      margin: 10px 0;
+    }
 
     /* ミッションセクション */
     #mission-section {
@@ -209,6 +242,29 @@
     <div class="service-item">📦 包装・梱包サービス</div>
     <div class="service-item">🗺️ 国際物流対応</div>
   </section>
+  
+  <!-- データベースセクション -->
+  <section id="database-section">
+    <h2>データベース</h2>
+    <div class="database-content">
+      <div class="database-item">
+        <h3>年商</h3>
+        <p class="counter" data-target="200000000">0</p>
+      </div>
+      <div class="database-item">
+        <h3>倉庫面積 (㎡)</h3>
+        <p class="counter" data-target="500000">0</p>
+      </div>
+      <div class="database-item">
+        <h3>グループ会社数</h3>
+        <p class="counter" data-target="25">0</p>
+      </div>
+      <div class="database-item">
+        <h3>拠点数</h3>
+        <p class="counter" data-target="120">0</p>
+      </div>
+    </div>
+  </section>
 
   <!-- ミッションセクション -->
   <section id="mission-section">
@@ -292,6 +348,27 @@
         observer.observe(section);
       });
     };
+    
+    // 🔄 カウンター処理（競合しないように追加）
+    const counters = document.querySelectorAll('.counter');
+    const speed = 50; // カウントアップのスピード
+
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = Math.ceil(target / speed);
+
+        if (count < target) {
+          counter.innerText = count + increment;
+          setTimeout(updateCount, 30);
+        } else {
+          counter.innerText = target.toLocaleString();
+        }
+      };
+      updateCount();
+    });
+  });
   </script>
 
 </body>
