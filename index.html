@@ -206,28 +206,15 @@
       const logo = document.getElementById('logo');
       const mainFrame = document.getElementById('main-frame');
 
+      // SVGの読み込み完了でフェードイン
+      mainFrame.addEventListener('load', () => {
+        mainFrame.style.opacity = 1;
+      });
+
       // ロゴのフェードアウト
       setTimeout(() => {
         logo.classList.add('move');
       }, 1000);
-
-      // SVGの表示
-      setTimeout(() => {
-        mainFrame.style.opacity = 1;
-      }, 2000);
-
-      // セクションのふわっと表示
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-          }
-        });
-      });
-
-      document.querySelectorAll('section').forEach(section => {
-        observer.observe(section);
-      });
     };
   </script>
 
