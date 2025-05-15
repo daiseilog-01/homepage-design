@@ -117,11 +117,13 @@
       justify-content: space-between;
       max-width: 1200px;
       margin: 0 auto;
+      border-top: 1px solid #d3d3d3; /* 薄いグレーの上罫線 */
     }
     
     .footer-column {
       flex: 1;
       padding: 0 20px;
+      position: relative;
     }
     
     .footer-column h3 {
@@ -148,6 +150,17 @@
       color: #a0c4ff;
     }
     
+    /* デスクトップ用の縦の罫線 */
+    .footer-column:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1px;
+      height: 100%;
+      background-color: #d3d3d3;
+    }
+    
     /* スマホ版のレイアウト調整 */
     @media screen and (max-width: 768px) {
       .footer-content {
@@ -156,6 +169,15 @@
       .footer-column {
         margin-bottom: 20px;
         padding: 0;
+      }
+      .footer-column:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #d3d3d3;
       }
     }
   </style>
