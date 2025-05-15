@@ -249,19 +249,27 @@
     <div class="database-content">
       <div class="database-item">
         <h3>年商</h3>
-        <p class="counter" data-target="200000000">0</p>
+        <p class="counter" data-target="141" data-unit="億">0</p>
       </div>
       <div class="database-item">
-        <h3>倉庫面積 (㎡)</h3>
-        <p class="counter" data-target="500000">0</p>
+        <h3>倉庫面積 (坪)</h3>
+        <p class="counter" data-target="50000" data-unit="坪">0</p>
       </div>
       <div class="database-item">
-        <h3>グループ会社数</h3>
-        <p class="counter" data-target="25">0</p>
+        <h3>Crew数</h3>
+        <p class="counter" data-target="850" data-unit="名">0</p>
       </div>
       <div class="database-item">
         <h3>拠点数</h3>
-        <p class="counter" data-target="120">0</p>
+        <p class="counter" data-target="30" data-unit="拠点">0</p>
+      </div>
+      <div class="database-item">
+        <h3>車両台数</h3>
+        <p class="counter" data-target="315" data-unit="台">0</p>
+      </div>
+      <div class="database-item">
+        <h3>設立</h3>
+        <p class="counter" data-target="50" data-unit="年">0</p>
       </div>
     </div>
   </section>
@@ -348,35 +356,36 @@
         observer.observe(section);
       });
     };
+    
+  // 🔄 カウンター処理（スクロール時に発動）
+  document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 50; // カウントアップのスピード
   
-    // 🔄 カウンター処理（スクロール時に発動）
-    document.addEventListener('DOMContentLoaded', () => {
-      const counters = document.querySelectorAll('.counter');
-      const speed = 50; // カウントアップのスピード
+    // IntersectionObserver の設定
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = +counter.getAttribute('data-target');
+          const unit = counter.getAttribute('data-unit') || ""; // data-unit 取得
+          const increment = Math.ceil(target / speed);
   
-      // IntersectionObserver の設定
-      const counterObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const counter = entry.target;
-            const target = +counter.getAttribute('data-target');
-            const increment = Math.ceil(target / speed);
-  
-            // カウントアップの処理
-            const updateCount = () => {
-              const count = +counter.innerText;
-              if (count < target) {
-                counter.innerText = count + increment;
-                setTimeout(updateCount, 30);
-              } else {
-                counter.innerText = target.toLocaleString();
-                observer.unobserve(counter); // 監視解除
-              }
-            };
-            updateCount();
-          }
-        });
+          // カウントアップの処理
+          const updateCount = () => {
+            const count = +counter.innerText;
+            if (count < target) {
+              counter.innerText = count + increment;
+              setTimeout(updateCount, 30);
+            } else {
+              counter.innerText = `${target.toLocaleString()} ${unit}`;
+              observer.unobserve(counter); // 監視解除
+            }
+          };
+          updateCount();
+        }
       });
+    });
   
       // カウンターを監視対象に追加
       counters.forEach(counter => {
