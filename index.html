@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Homepage - Logistics_v1.27</title>
+  <title>Company Homepage - Logistics_v1.28</title>
   <style>
     body {
       margin: 0;
@@ -93,30 +93,47 @@
       background-color: #e9ecef;
     }
 
-    /* 会社概要セクション */
+    /* フッターセクション */
     #about-section {
-      background-color: #f8f9fa;
+      background-color: #003366; /* 濃い青 */
+      color: white;
+      padding: 40px 20px;
     }
 
-    .link-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      max-width: 800px;
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .link-card {
-      background-color: #007bff;
-      color: white;
-      padding: 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
+    .footer-column {
+      flex: 1;
+      padding: 0 20px;
     }
 
-    .link-card:hover {
-      background-color: #0056b3;
+    .footer-column h3 {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-column ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-column ul li a:hover {
+      color: #a0c4ff;
     }
   </style>
 </head>
@@ -155,62 +172,39 @@
     </p>
   </section>
 
-  <!-- 会社概要セクション -->
+  <!-- フッターセクション -->
   <section id="about-section">
-    <h2>会社概要・各種リンク</h2>
-    <div class="link-list">
-      <a class="link-card" href="#">📌 会社概要</a>
-      <a class="link-card" href="#">📍 アクセスマップ</a>
-      <a class="link-card" href="#">📰 ニュース</a>
-      <a class="link-card" href="#">🌐 採用情報</a>
-      <a class="link-card" href="#">🔗 関連リンク</a>
-      <a class="link-card" href="#">✉️ お問い合わせ</a>
+    <div class="footer-content">
+      <!-- 会社情報 -->
+      <div class="footer-column">
+        <h3>Daisei Logistics Co., Ltd.</h3>
+        <p>〒123-4567 東京都新宿区西新宿2-8-1</p>
+        <p>TEL: 03-1234-5678</p>
+        <p>FAX: 03-1234-5679</p>
+      </div>
+
+      <!-- 各種リンク -->
+      <div class="footer-column">
+        <h3>リンク一覧</h3>
+        <ul>
+          <li><a href="#">会社概要</a></li>
+          <li><a href="#">アクセスマップ</a></li>
+          <li><a href="#">ニュースリリース</a></li>
+          <li><a href="#">採用情報</a></li>
+          <li><a href="#">お問い合わせ</a></li>
+        </ul>
+      </div>
+
+      <!-- ポリシーリンク -->
+      <div class="footer-column">
+        <h3>ポリシー</h3>
+        <ul>
+          <li><a href="#">プライバシーポリシー</a></li>
+          <li><a href="#">セキュリティポリシー</a></li>
+        </ul>
+      </div>
     </div>
   </section>
-
-  <script>
-    function updateSVG() {
-      const mainFrame = document.getElementById('main-frame');
-      if (window.innerWidth <= 768) {
-        mainFrame.data = './logo-frame_sp.svg';
-      } else {
-        mainFrame.data = './logo-frame.svg';
-      }
-    }
-
-    window.onload = () => {
-      const logo = document.getElementById('logo');
-      const mainFrame = document.getElementById('main-frame');
-      
-      // 初期表示のSVGを設定
-      updateSVG();
-      window.addEventListener('resize', updateSVG);
-
-      // ロゴの移動開始 → 1秒待ってフェードアウト
-      setTimeout(() => {
-        logo.classList.add('move');
-      }, 1000);
-
-      // フェードアウト完了後、SVGの表示開始
-      setTimeout(() => {
-        mainFrame.style.opacity = 1;
-      }, 2000);
-
-      // IntersectionObserver でふわっと表示
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-          }
-        });
-      });
-
-      // 監視対象のセクションを追加
-      document.querySelectorAll('section').forEach(section => {
-        observer.observe(section);
-      });
-    };
-  </script>
 
 </body>
 </html>
