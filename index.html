@@ -477,7 +477,7 @@
       const startSlideshow = () => {
         interval = setInterval(() => {
           nextSlide();
-        }, 3000); // 3秒ごとに切り替え
+        }, 3000); // ⬅️ 3秒ごとに切り替え
       };
     
       // スライドの切り替え
@@ -485,11 +485,12 @@
         currentIndex = (index + slideImages.length) % slideImages.length;
         slideImage.style.opacity = 0;
     
+        // フェードアウトしてから切り替え
         setTimeout(() => {
           slideImage.src = slideImages[currentIndex];
           slideImage.style.opacity = 1;
           updateDots();
-        }, 500);
+        }, 1000); // ⬅️ フェード時間は1秒に調整
       };
     
       // ナビゲーションボタン
