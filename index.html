@@ -91,18 +91,69 @@
     /* スライドショーのスタイル */
     .slideshow-container {
       width: 100%;
-      height: 400px;
+      height: 500px;
       overflow: hidden;
       margin-bottom: 20px;
       border-radius: 8px;
+      position: relative;
     }
     
     #slide-image {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* 上下切れないように修正 */
       transition: opacity 1s ease;
     }
+    
+    /* 左右のナビゲーション */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: 50px;
+      height: 50px;
+      margin-top: -25px;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      user-select: none;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.5);
+      text-align: center;
+      line-height: 50px;
+    }
+    
+    .prev {
+      left: 10px;
+    }
+    
+    .next {
+      right: 10px;
+    }
+    
+    /* ドットインジケータ */
+    .dot-container {
+      text-align: center;
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+    }
+    
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+    
+    .dot.active {
+      background-color: #007bff;
+    }
+
     
     /* データベースセクションのスタイル */
     #database-section {
@@ -275,6 +326,18 @@
     <!-- スライドショーコンテナ -->
     <div class="slideshow-container">
       <img id="slide-image" src="./slides/service1.png" alt="サービスイメージ">
+      
+      <!-- 左右のナビゲーションボタン -->
+      <div class="prev" onclick="prevSlide()">&#10094;</div>
+      <div class="next" onclick="nextSlide()">&#10095;</div>
+      
+      <!-- ドットのインジケータ -->
+      <div class="dot-container">
+        <span class="dot" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+        <span class="dot" onclick="goToSlide(3)"></span>
+      </div>
     </div>
   </section>
   
@@ -406,22 +469,66 @@
         './slides/service3.png',
         './slides/service4.png'
       ];
-    
+      
       let currentIndex = 0;
+      let interval;
     
-      setInterval(() => {
-        // インデックスを更新
-        currentIndex = (currentIndex + 1) % slideImages.length;
-        // フェードアウトしてから画像を変更
+      // 自動スライド
+      const startSlideshow = () => {
+        interval = setInterval(() => {
+          nextSlide();
+        }, 3000); // 3秒ごとに切り替え
+      };
+    
+      // スライドの切り替え
+      const showSlide = (index) => {
+        currentIndex = (index + slideImages.length) % slideImages.length;
         slideImage.style.opacity = 0;
     
         setTimeout(() => {
           slideImage.src = slideImages[currentIndex];
           slideImage.style.opacity = 1;
-        }, 500); // フェード時間
-      }, 3000); // 3秒ごとに切り替え
-    });
+          updateDots();
+        }, 500);
+      };
     
+      // ナビゲーションボタン
+      window.nextSlide = () => {
+        clearInterval(interval);
+        showSlide(currentIndex + 1);
+        startSlideshow();
+      };
+    
+      window.prevSlide = () => {
+        clearInterval(interval);
+        showSlide(currentIndex - 1);
+        startSlideshow();
+      };
+    
+      // ドットインジケータの更新
+      const updateDots = () => {
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+          if (index === currentIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      };
+    
+      // ドットクリックでスライド移動
+      window.goToSlide = (index) => {
+        clearInterval(interval);
+        showSlide(index);
+        startSlideshow();
+      };
+    
+      // 初期化
+      updateDots();
+      startSlideshow();
+    });
+
     // 🔄 カウンター処理（スクロール時に発動）
     document.addEventListener('DOMContentLoaded', () => {
       const counters = document.querySelectorAll('.counter');
