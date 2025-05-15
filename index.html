@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Homepage - Logistics_v1.21</title>
+  <title>Company Homepage - Logistics_v1.22</title>
   <style>
     body {
       margin: 0;
@@ -26,23 +26,23 @@
     }
 
     #logo.move {
-      transition: all 1s ease;
-      top: 90%;
-      left: 5%;
+      transition: opacity 1s ease;
       opacity: 0;
+    }
+
+    /* メインフレーム */
+    #main-frame {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease 0s;
     }
 
     /* セクション共通 */
     section {
       padding: 60px 20px;
       text-align: center;
-    }
-
-    #main-frame {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      transition: opacity 0.5s ease 0s;
     }
 
     /* トップセクション */
@@ -171,19 +171,19 @@
 
     window.onload = () => {
       const logo = document.getElementById('logo');
+      const mainFrame = document.getElementById('main-frame');
       
       // 初期表示のSVGを設定
       updateSVG();
       window.addEventListener('resize', updateSVG);
 
-      // ロゴの移動開始
+      // ロゴの移動開始 → 1秒待ってフェードアウト
       setTimeout(() => {
         logo.classList.add('move');
       }, 1000);
 
-      // フレーム表示
+      // フェードアウト完了後、SVGの表示開始
       setTimeout(() => {
-        const mainFrame = document.getElementById('main-frame');
         mainFrame.style.opacity = 1;
       }, 2000);
     };
