@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Homepage - Logistics_v1.20</title>
+  <title>Company Homepage - Logistics_v1.21</title>
   <style>
     body {
       margin: 0;
@@ -11,6 +11,25 @@
       font-family: Arial, sans-serif;
       background-color: #ffffff;
       scroll-behavior: smooth;
+    }
+
+    /* ロゴ表示 */
+    #logo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 314.29px;
+      height: 393px;
+      opacity: 1;
+      z-index: 1000;
+    }
+
+    #logo.move {
+      transition: all 1s ease;
+      top: 90%;
+      left: 5%;
+      opacity: 0;
     }
 
     /* セクション共通 */
@@ -23,6 +42,7 @@
       width: 100vw;
       height: 100vh;
       object-fit: cover;
+      transition: opacity 0.5s ease 0s;
     }
 
     /* トップセクション */
@@ -93,9 +113,14 @@
 </head>
 <body>
 
+  <!-- ロゴ表示 -->
+  <img id="logo" src="./logo.png" />
+
+  <!-- メインフレーム -->
+  <object id="main-frame" type="image/svg+xml"></object>
+
   <!-- トップセクション -->
   <section id="top-section">
-    <object id="main-frame" type="image/svg+xml" data="./logo-frame.svg"></object>
     <div id="navigation-panel">
       <a class="nav-card" href="#service-section">サービス</a>
       <a class="nav-card" href="#mission-section">ミッション</a>
@@ -133,6 +158,36 @@
       <a class="link-card" href="#">✉️ お問い合わせ</a>
     </div>
   </section>
+
+  <script>
+    function updateSVG() {
+      const mainFrame = document.getElementById('main-frame');
+      if (window.innerWidth <= 768) {
+        mainFrame.data = './logo-frame_sp.svg';
+      } else {
+        mainFrame.data = './logo-frame.svg';
+      }
+    }
+
+    window.onload = () => {
+      const logo = document.getElementById('logo');
+      
+      // 初期表示のSVGを設定
+      updateSVG();
+      window.addEventListener('resize', updateSVG);
+
+      // ロゴの移動開始
+      setTimeout(() => {
+        logo.classList.add('move');
+      }, 1000);
+
+      // フレーム表示
+      setTimeout(() => {
+        const mainFrame = document.getElementById('main-frame');
+        mainFrame.style.opacity = 1;
+      }, 2000);
+    };
+  </script>
 
 </body>
 </html>
