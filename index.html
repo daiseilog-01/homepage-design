@@ -128,8 +128,8 @@
     }
     
     .counter span.unit {
-      font-size: 0.5em; /* 50%のサイズ */
-      margin-left: 5px; /* 少し離す */
+      font-size: 0.75em; /* 見やすく調整 */
+      margin-left: 5px;
     }
     
     /* ミッションセクション */
@@ -384,7 +384,7 @@
     
             // カウントアップの処理
             const updateCount = () => {
-              const count = +counter.innerText.replace(/,/g, "");
+              const count = +counter.querySelector('.value')?.textContent.replace(/,/g, "") || 0;
               if (count < target) {
                 counter.innerHTML = `<span class="value">${(count + increment).toLocaleString()}</span> <span class="unit">${unit}</span>`;
                 setTimeout(updateCount, 30);
@@ -393,11 +393,14 @@
                 observer.unobserve(counter); // 監視解除
               }
             };
+    
+            // 初期表示を正しくする
+            counter.innerHTML = `<span class="value">0</span> <span class="unit">${unit}</span>`;
             updateCount();
           }
         });
       });
-  
+
       // カウンターを監視対象に追加
       counters.forEach(counter => {
         counterObserver.observe(counter);
