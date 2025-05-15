@@ -175,15 +175,12 @@
   <!-- フッターセクション -->
   <section id="about-section">
     <div class="footer-content">
-      <!-- 会社情報 -->
       <div class="footer-column">
         <h3>Daisei Logistics Co., Ltd.</h3>
         <p>〒123-4567 東京都新宿区西新宿2-8-1</p>
         <p>TEL: 03-1234-5678</p>
         <p>FAX: 03-1234-5679</p>
       </div>
-
-      <!-- 各種リンク -->
       <div class="footer-column">
         <h3>リンク一覧</h3>
         <ul>
@@ -194,8 +191,6 @@
           <li><a href="#">お問い合わせ</a></li>
         </ul>
       </div>
-
-      <!-- ポリシーリンク -->
       <div class="footer-column">
         <h3>ポリシー</h3>
         <ul>
@@ -205,6 +200,36 @@
       </div>
     </div>
   </section>
+
+  <script>
+    window.onload = () => {
+      const logo = document.getElementById('logo');
+      const mainFrame = document.getElementById('main-frame');
+
+      // ロゴのフェードアウト
+      setTimeout(() => {
+        logo.classList.add('move');
+      }, 1000);
+
+      // SVGの表示
+      setTimeout(() => {
+        mainFrame.style.opacity = 1;
+      }, 2000);
+
+      // セクションのふわっと表示
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      });
+
+      document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+      });
+    };
+  </script>
 
 </body>
 </html>
