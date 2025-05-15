@@ -97,14 +97,18 @@
       position: relative;
     }
     
-    #slide-image {
+    .slides {
+      display: flex;
+      transition: transform 1s ease;
+      width: 400%;
+    }
+    
+    .slides img {
       width: 100%;
       height: auto;
-      display: block;
       object-fit: cover;
     }
     
-    /* 左右のナビゲーション */
     .prev, .next {
       cursor: pointer;
       position: absolute;
@@ -325,7 +329,12 @@
   
     <!-- スライドショーコンテナ -->
     <div class="slideshow-container">
-      <img id="slide-image" src="./slides/service1.png" alt="サービスイメージ">
+      <div class="slides">
+        <img src="./slides/service1.png" alt="サービスイメージ">
+        <img src="./slides/service2.png" alt="サービスイメージ">
+        <img src="./slides/service3.png" alt="サービスイメージ">
+        <img src="./slides/service4.png" alt="サービスイメージ">
+      </div>
       
       <!-- 左右のナビゲーションボタン -->
       <div class="prev" onclick="prevSlide()">&#10094;</div>
@@ -462,14 +471,9 @@
 
     // スライドショー処理
     document.addEventListener('DOMContentLoaded', () => {
-      const slideImage = document.getElementById('slide-image');
-      const slideImages = [
-        './slides/service1.png',
-        './slides/service2.png',
-        './slides/service3.png',
-        './slides/service4.png'
-      ];
-      
+      const slides = document.querySelector('.slides');
+      const slideImages = document.querySelectorAll('.slides img');
+      const dots = document.querySelectorAll('.dot');
       let currentIndex = 0;
       let interval;
     
@@ -477,20 +481,14 @@
       const startSlideshow = () => {
         interval = setInterval(() => {
           nextSlide();
-        }, 5000); // ⬅️ 5秒ごとに切り替え
+        }, 5000); // 5秒ごとに切り替え
       };
     
       // スライドの切り替え
       const showSlide = (index) => {
         currentIndex = (index + slideImages.length) % slideImages.length;
-        slideImage.style.opacity = 0;
-    
-        // フェードアウトしてから切り替え
-        setTimeout(() => {
-          slideImage.src = slideImages[currentIndex];
-          slideImage.style.opacity = 1;
-          updateDots();
-        }, 1000); // ⬅️ フェード時間は1秒に調整
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateDots();
       };
     
       // ナビゲーションボタン
@@ -508,7 +506,6 @@
     
       // ドットインジケータの更新
       const updateDots = () => {
-        const dots = document.querySelectorAll('.dot');
         dots.forEach((dot, index) => {
           if (index === currentIndex) {
             dot.classList.add('active');
