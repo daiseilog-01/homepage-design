@@ -90,7 +90,16 @@
 
     /* ミッションセクション */
     #mission-section {
+      position: relative;
       background-color: #e9ecef;
+      overflow: hidden;
+    }
+    
+    .mission-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
     }
 
     /* 会社概要セクションのスタイル */
@@ -176,11 +185,7 @@
 
   <!-- ミッションセクション -->
   <section id="mission-section">
-    <h2>ミッション</h2>
-    <p>
-      「正確で迅速な物流サービスを通じて、世界中のビジネスを支える」
-      私たちは最新の技術と徹底した管理体制により、安全で確実な物流サービスを提供します。
-    </p>
+    <img src="./greeting.png" alt="Greeting Image" class="mission-image">
   </section>
 
   <!-- 会社概要セクション -->
