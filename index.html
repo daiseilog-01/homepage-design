@@ -88,6 +88,22 @@
       margin-bottom: 20px;
     }
     
+    /* スライドショーのスタイル */
+    .slideshow-container {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+    
+    #slide-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 1s ease;
+    }
+    
     /* データベースセクションのスタイル */
     #database-section {
       background-color: #f8f9fa;
@@ -255,10 +271,11 @@
   <!-- サービスセクション -->
   <section id="service-section">
     <h2>サービス紹介</h2>
-    <div class="service-item">🚚 全国配送ネットワーク</div>
-    <div class="service-item">🏢 倉庫管理・在庫保管</div>
-    <div class="service-item">📦 包装・梱包サービス</div>
-    <div class="service-item">🗺️ 国際物流対応</div>
+  
+    <!-- スライドショーコンテナ -->
+    <div class="slideshow-container">
+      <img id="slide-image" src="./slides/service1.png" alt="サービスイメージ">
+    </div>
   </section>
   
   <!-- データベースセクション -->
@@ -379,6 +396,31 @@
         observer.observe(section);
       });
     };
+
+    // スライドショー処理
+    document.addEventListener('DOMContentLoaded', () => {
+      const slideImage = document.getElementById('slide-image');
+      const slideImages = [
+        './slides/service1.png',
+        './slides/service2.png',
+        './slides/service3.png',
+        './slides/service4.png'
+      ];
+    
+      let currentIndex = 0;
+    
+      setInterval(() => {
+        // インデックスを更新
+        currentIndex = (currentIndex + 1) % slideImages.length;
+        // フェードアウトしてから画像を変更
+        slideImage.style.opacity = 0;
+    
+        setTimeout(() => {
+          slideImage.src = slideImages[currentIndex];
+          slideImage.style.opacity = 1;
+        }, 500); // フェード時間
+      }, 3000); // 3秒ごとに切り替え
+    });
     
     // 🔄 カウンター処理（スクロール時に発動）
     document.addEventListener('DOMContentLoaded', () => {
