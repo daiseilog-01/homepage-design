@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Homepage - Logistics_v1.28</title>
+  <title>Company Homepage - Logistics_v1.29</title>
   <style>
     body {
       margin: 0;
@@ -206,15 +206,18 @@
       const logo = document.getElementById('logo');
       const mainFrame = document.getElementById('main-frame');
 
-      // SVGの読み込み完了でフェードイン
-      mainFrame.addEventListener('load', () => {
-        mainFrame.style.opacity = 1;
-      });
-
       // ロゴのフェードアウト
       setTimeout(() => {
         logo.classList.add('move');
       }, 1000);
+
+      // SVGを再ロードすることで確実に表示させる
+      mainFrame.data = './logo-frame.svg';
+
+      // SVGがロードされたら表示
+      mainFrame.onload = () => {
+        mainFrame.style.opacity = 1;
+      };
     };
   </script>
 
