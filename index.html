@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Company Homepage - Version 1.05</title>
+    <title>Company Homepage - Version 1.06</title>
     <style>
       body {
         margin: 0;
@@ -102,16 +102,6 @@
         // フレームとメニューのフェードイン
         setTimeout(() => {
           mainFrame.style.opacity = 1;
-
-          // SVG内のアニメーションをリセットして再スタート
-          const svgDocument = mainFrame.contentDocument;
-          if (svgDocument) {
-            const animatedElement = svgDocument.querySelector('animate');
-            if (animatedElement) {
-              animatedElement.beginElement();
-            }
-          }
-
           document.getElementById('navigation-panel').style.opacity = 1;
         }, 2000);
       };
