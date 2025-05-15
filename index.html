@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Homepage - Logistics_v1.22</title>
+  <title>Company Homepage - Logistics_v1.23</title>
   <style>
     body {
       margin: 0;
@@ -43,6 +43,14 @@
     section {
       padding: 60px 20px;
       text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0px);
     }
 
     /* トップセクション */
@@ -186,6 +194,20 @@
       setTimeout(() => {
         mainFrame.style.opacity = 1;
       }, 2000);
+
+      // IntersectionObserver でふわっと表示
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      });
+
+      // 監視対象のセクションを追加
+      document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+      });
     };
   </script>
 
