@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Homepage - Logistics_v1.25</title>
+  <title>Company Homepage - Logistics_v1.26</title>
   <style>
     body {
       margin: 0;
@@ -25,8 +25,8 @@
       z-index: 1000;
     }
 
+    /* 元のフェードアウトパターンに戻した */
     #logo.move {
-      /* ===== 以前のフェードアウトのみのパターン ===== */
       transition: opacity 1s ease;
       opacity: 0;
     }
@@ -128,25 +128,73 @@
   <!-- メインフレーム -->
   <object id="main-frame" type="image/svg+xml"></object>
 
+  <!-- トップセクション -->
+  <section id="top-section">
+    <div id="navigation-panel">
+      <a class="nav-card" href="#service-section">サービス</a>
+      <a class="nav-card" href="#mission-section">ミッション</a>
+      <a class="nav-card" href="#about-section">会社概要</a>
+    </div>
+  </section>
+
+  <!-- サービスセクション -->
+  <section id="service-section">
+    <h2>サービス紹介</h2>
+    <div class="service-item">🚚 全国配送ネットワーク</div>
+    <div class="service-item">🏢 倉庫管理・在庫保管</div>
+    <div class="service-item">📦 包装・梱包サービス</div>
+    <div class="service-item">🗺️ 国際物流対応</div>
+  </section>
+
+  <!-- ミッションセクション -->
+  <section id="mission-section">
+    <h2>ミッション</h2>
+    <p>
+      「正確で迅速な物流サービスを通じて、世界中のビジネスを支える」
+      私たちは最新の技術と徹底した管理体制により、安全で確実な物流サービスを提供します。
+    </p>
+  </section>
+
+  <!-- 会社概要セクション -->
+  <section id="about-section">
+    <h2>会社概要・各種リンク</h2>
+    <div class="link-list">
+      <a class="link-card" href="#">📌 会社概要</a>
+      <a class="link-card" href="#">📍 アクセスマップ</a>
+      <a class="link-card" href="#">📰 ニュース</a>
+      <a class="link-card" href="#">🌐 採用情報</a>
+      <a class="link-card" href="#">🔗 関連リンク</a>
+      <a class="link-card" href="#">✉️ お問い合わせ</a>
+    </div>
+  </section>
+
   <script>
     function updateSVG() {
       const mainFrame = document.getElementById('main-frame');
       if (window.innerWidth <= 768) {
         mainFrame.data = './logo-frame_sp.svg';
-        mainFrame.style.width = '100vw';
-        mainFrame.style.height = '100vh';
-        mainFrame.style.objectFit = 'cover';
       } else {
         mainFrame.data = './logo-frame.svg';
-        mainFrame.style.width = '100vw';
-        mainFrame.style.height = '100vh';
-        mainFrame.style.objectFit = 'cover';
       }
     }
 
     window.onload = () => {
+      const logo = document.getElementById('logo');
+      const mainFrame = document.getElementById('main-frame');
+      
+      // 初期表示のSVGを設定
       updateSVG();
       window.addEventListener('resize', updateSVG);
+
+      // ロゴの移動開始 → 1秒待ってフェードアウト
+      setTimeout(() => {
+        logo.classList.add('move');
+      }, 1000);
+
+      // フェードアウト完了後、SVGの表示開始
+      setTimeout(() => {
+        mainFrame.style.opacity = 1;
+      }, 2000);
     };
   </script>
 
