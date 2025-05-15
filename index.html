@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Company Homepage - Version 1.02</title>
+    <title>Company Homepage - Version 1.04</title>
     <style>
       body {
         margin: 0;
@@ -38,7 +38,7 @@
         top: 0;
         left: 0;
         opacity: 0;
-        transition: opacity 0.5s ease 2s;
+        transition: opacity 0.5s ease 1s;
       }
 
       #navigation-panel {
@@ -54,7 +54,7 @@
         grid-gap: 10px;
         width: 800px;
         opacity: 0;
-        transition: opacity 0.5s ease 2s;
+        transition: opacity 0.5s ease 1.5s;
       }
 
       .nav-card {
@@ -92,17 +92,17 @@
     <script>
       window.onload = () => {
         const logo = document.getElementById('logo');
-        const frame = document.getElementById('main-frame');
-        const navigation = document.getElementById('navigation-panel');
 
+        // ロゴの移動開始
         setTimeout(() => {
           logo.classList.add('move');
         }, 1000);
 
+        // フレームとメニューのフェードイン
         setTimeout(() => {
-          frame.style.opacity = 1;
-          navigation.style.opacity = 1;
-        }, 2000);
+          document.getElementById('main-frame').style.opacity = 1;
+          document.getElementById('navigation-panel').style.opacity = 1;
+        }, 1500);
       };
     </script>
 
