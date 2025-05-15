@@ -348,28 +348,41 @@
         observer.observe(section);
       });
     };
-    
-  // 🔄 カウンター処理（競合しないように追加）
-  document.addEventListener('DOMContentLoaded', () => {
-    const counters = document.querySelectorAll('.counter');
-    const speed = 50; // カウントアップのスピード
-
-    counters.forEach(counter => {
-      const updateCount = () => {
-        const target = +counter.getAttribute('data-target');
-        const count = +counter.innerText;
-        const increment = Math.ceil(target / speed);
-
-        if (count < target) {
-          counter.innerText = count + increment;
-          setTimeout(updateCount, 30);
-        } else {
-          counter.innerText = target.toLocaleString();
-        }
-      };
-      updateCount();
+  
+    // 🔄 カウンター処理（スクロール時に発動）
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.counter');
+      const speed = 50; // カウントアップのスピード
+  
+      // IntersectionObserver の設定
+      const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = +counter.getAttribute('data-target');
+            const increment = Math.ceil(target / speed);
+  
+            // カウントアップの処理
+            const updateCount = () => {
+              const count = +counter.innerText;
+              if (count < target) {
+                counter.innerText = count + increment;
+                setTimeout(updateCount, 30);
+              } else {
+                counter.innerText = target.toLocaleString();
+                observer.unobserve(counter); // 監視解除
+              }
+            };
+            updateCount();
+          }
+        });
+      });
+  
+      // カウンターを監視対象に追加
+      counters.forEach(counter => {
+        counterObserver.observe(counter);
+      });
     });
-  });
   </script>
 
 </body>
