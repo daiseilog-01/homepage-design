@@ -78,8 +78,9 @@
     }
     
     .section-icon {
-      width: 45px;   /* アイコンサイズ調整 */
-      height: 45px;
+      width: 30px;   /* アイコンサイズ調整 */
+      height: 30px;
+      margin-top: 15px;
       fill: #003366;
     }
     
@@ -693,11 +694,18 @@
       startSlideshow();
     });
 
+    // 🔄 アイコンの色をタイトルの下の線と同じ色に変更
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.section-icon').forEach(icon => {
+        icon.style.fill = '#003366';  // タイトルの下の線と同じ色
+      });
+    });
+    
     // 🔄 カウンター処理（スクロール時に発動）
     document.addEventListener('DOMContentLoaded', () => {
       const counters = document.querySelectorAll('.counter');
       const speed = 50; // カウントアップのスピード
-    
+      
       // IntersectionObserver の設定
       const counterObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
