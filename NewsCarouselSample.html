@@ -49,9 +49,17 @@
         .card-content a:hover {
             text-decoration: underline;
         }
-        .icon {
-            margin-right: 5px;
-            vertical-align: middle;
+        .icon-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .icon-links a {
+            margin: 0 10px;
+        }
+        .icon-links img {
+            width: 30px;
+            height: 30px;
         }
     </style>
 </head>
@@ -61,46 +69,38 @@
 <div class="carousel-container">
     <div class="carousel">
         <div class="card">
-            <img src="https://via.placeholder.com/400x150?text=Twitter+News" alt="Twitter Update">
+            <img src="https://via.placeholder.com/800x400?text=Twitter+News" alt="Twitter Update">
             <div class="card-content">
-                <h3><img src="https://upload.wikimedia.org/wikipedia/en/6/60/Twitter_Logo_as_of_2021.svg" class="icon" width="20">Twitter Update</h3>
+                <h3>Twitter Update</h3>
                 <p>Latest news from Twitter.</p>
                 <a href="https://twitter.com" target="_blank">Read more →</a>
             </div>
         </div>
         <div class="card">
-            <img src="https://via.placeholder.com/400x150?text=Instagram+Post" alt="Instagram Post">
+            <img src="https://via.placeholder.com/800x400?text=Instagram+Post" alt="Instagram Post">
             <div class="card-content">
-                <h3><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="icon" width="20">Instagram Post</h3>
+                <h3>Instagram Post</h3>
                 <p>Check out our new update.</p>
                 <a href="https://instagram.com" target="_blank">Read more →</a>
             </div>
         </div>
         <div class="card">
-            <img src="https://via.placeholder.com/400x150?text=Facebook+News" alt="Facebook News">
+            <img src="https://via.placeholder.com/800x400?text=Facebook+News" alt="Facebook News">
             <div class="card-content">
-                <h3><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" class="icon" width="20">Facebook News</h3>
+                <h3>Facebook News</h3>
                 <p>Follow us on Facebook for more.</p>
                 <a href="https://facebook.com" target="_blank">Read more →</a>
             </div>
         </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/400x150?text=YouTube+Video" alt="YouTube Video">
-            <div class="card-content">
-                <h3><img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" class="icon" width="20">YouTube Video</h3>
-                <p>Watch our latest video.</p>
-                <a href="https://youtube.com" target="_blank">Read more →</a>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/400x150?text=Blog+Update" alt="Blog Update">
-            <div class="card-content">
-                <h3><img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Globe_icon.svg" class="icon" width="20">Blog Update</h3>
-                <p>Read our latest blog post.</p>
-                <a href="https://example.com/blog" target="_blank">Read more →</a>
-            </div>
-        </div>
     </div>
+</div>
+
+<div class="icon-links">
+    <a href="https://twitter.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/6/60/Twitter_Logo_as_of_2021.svg" alt="Twitter"></a>
+    <a href="https://instagram.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+    <a href="https://facebook.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+    <a href="https://youtube.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube"></a>
+    <a href="https://example.com/blog" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Globe_icon.svg" alt="Blog"></a>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -108,7 +108,7 @@
 <script>
     $(document).ready(function(){
         $('.carousel').slick({
-            slidesToShow: 2,
+            slidesToShow: 1,
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 3000,
