@@ -65,6 +65,7 @@
       padding-bottom: 10px;
       color: #333;
       text-align: left; /* 左寄せ */
+      max-width: 1200px;  /* 最大幅を設定 */
     }
     
     .section-title::after {
@@ -314,7 +315,11 @@
       color: white;
       padding: 40px 20px;
     }
-    
+    /* ロゴのスタイル調整 */
+    .company-logomono {
+      width: 150px;   /* 適切なサイズに調整 */
+      margin-bottom: 15px; /* 会社名との間隔 */
+    }
     .footer-content {
       display: flex;
       justify-content: space-between;
@@ -497,6 +502,7 @@
     
     <!-- 会社情報 -->
     <div class="footer-column">
+      <img src="./logomono.png" alt="Company Logomono" class="company-logomono">
       <h3>Daisei Logistics Co., Ltd.</h3>
       <p>〒000-0000 東京都文京区本駒込5-28-7</p>
       <p>TEL: 00-0000-0000</p>
