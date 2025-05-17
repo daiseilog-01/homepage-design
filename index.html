@@ -71,15 +71,15 @@
       font-size: 28px;
       color: #333;
       text-align: left;
+      margin-top: 0;
     }
     
     .section-icon {
-      width: 15px;   /* アイコンサイズ調整 */
-      height: 15px;
+      width: 30px;   /* アイコンサイズ調整 */
+      height: 30px;
+      fill: #003366;
     }
-    .section-icon path {
-      fill: #003366 !important; /* アイコンの色指定 */
-    }
+    
     .section-title::after {
       content: "";
       display: block;
@@ -471,7 +471,11 @@
   <!-- データベースセクション -->
   <section id="database-section">
     <p class="section-subtitle">Database Information</p>
-    <h2 class="section-title">データベース</h2>
+<!--     <h2 class="section-title">データベース</h2> -->
+    <div class="section-title-wrapper">
+      <img src="./icons/chart-column-solid.svg" alt="データベースアイコン" class="section-icon">
+      <h2 class="section-title">データベース</h2>
+    </div>
     <div class="database-content">
       <div class="database-item">
         <img src="./icons/ico_about01.png" alt="設立アイコン" class="database-icon">
@@ -504,14 +508,22 @@
   <!-- ミッションセクション -->
   <section id="mission-section">
     <p class="section-subtitle">Our Mission</p>
-    <h2 class="section-title">ミッション</h2>
+<!--     <h2 class="section-title">ミッション</h2> -->
+    <div class="section-title-wrapper">
+      <img src="./icons/flag-solid.svg" alt="ミッションアイコン" class="section-icon">
+      <h2 class="section-title">ミッション</h2>
+    </div>
     <img src="./slides/mission1.png" alt="Greeting Image" class="mission-image">
   </section>
   
   <!-- ニュースセクション -->
   <section id="news-section">
     <p class="section-subtitle">Latest News</p>
-    <h2 class="section-title">ニュース</h2>
+<!--     <h2 class="section-title">ニュース</h2> -->
+    <div class="section-title-wrapper">
+      <img src="./icons/newspaper-solid.svg" alt="ニュースアイコン" class="section-icon">
+      <h2 class="section-title">ニュース</h2>
+    </div>
     <div class="news-container">
       <!-- ニュース項目がここに追加されます -->
       <div class="news-item">
@@ -530,6 +542,12 @@
   
   <!-- 会社概要セクション -->
 <section id="about-section">
+    <p class="section-subtitle">Site Navigation</p>
+    <div class="section-title-wrapper">
+      <img src="./icons/square-up-right-solid.svg" alt="サイト案内アイコン" class="section-icon">
+      <h2 class="section-title">サイト案内</h2>
+    </div>
+  
   <div class="footer-content">
     
     <!-- 会社情報 -->
