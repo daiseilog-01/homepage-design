@@ -14,7 +14,7 @@
             padding: 20px;
         }
         .carousel-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         .slick-slide {
@@ -69,7 +69,7 @@
 <div class="carousel-container">
     <div class="carousel">
         <div class="card">
-            <img src="https://via.placeholder.com/800x400?text=X+News" alt="X Update">
+            <img src="https://via.placeholder.com/300x200?text=X+News" alt="X Update">
             <div class="card-content">
                 <h3>X Update</h3>
                 <p>Latest news from X (formerly Twitter).</p>
@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="card">
-            <img src="https://via.placeholder.com/800x400?text=Instagram+Post" alt="Instagram Post">
+            <img src="https://via.placeholder.com/300x200?text=Instagram+Post" alt="Instagram Post">
             <div class="card-content">
                 <h3>Instagram Post</h3>
                 <p>Check out our new update.</p>
@@ -85,11 +85,19 @@
             </div>
         </div>
         <div class="card">
-            <img src="https://via.placeholder.com/800x400?text=Facebook+News" alt="Facebook News">
+            <img src="https://via.placeholder.com/300x200?text=Facebook+News" alt="Facebook News">
             <div class="card-content">
                 <h3>Facebook News</h3>
                 <p>Follow us on Facebook for more.</p>
                 <a href="https://facebook.com" target="_blank">Read more →</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200?text=YouTube+Video" alt="YouTube Video">
+            <div class="card-content">
+                <h3>YouTube Video</h3>
+                <p>Watch our latest video.</p>
+                <a href="https://youtube.com" target="_blank">Read more →</a>
             </div>
         </div>
     </div>
@@ -108,7 +116,7 @@
 <script>
     $(document).ready(function(){
         $('.carousel').slick({
-            slidesToShow: 1,
+            slidesToShow: 4,
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 3000,
