@@ -215,7 +215,11 @@
         max-width: 100%;
         overflow: hidden;
       }
-    
+     /* ここを追加する */
+      .slides {
+        display: flex;
+        width: 100%; /* 画面幅に合わせる */
+      }
       .slides img {
         width: 100%;
         height: auto;
@@ -655,7 +659,7 @@
         interval = setInterval(() => {
           currentIndex = (currentIndex + 1) % slides.length;
           showSlide(currentIndex);
-        }, 7000); // 5秒ごとに切り替え
+        }, 6000); // 5秒ごとに切り替え
       };
     
       // ✅ スライドの表示切り替え
