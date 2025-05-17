@@ -1,10 +1,11 @@
-""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Carousel Sample</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/react-responsive-carousel/3.2.23/carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,6 +17,9 @@
             max-width: 800px;
             margin: 0 auto;
         }
+        .slick-slide {
+            margin: 0 10px;
+        }
         .card {
             border-radius: 10px;
             overflow: hidden;
@@ -24,7 +28,7 @@
         }
         .card img {
             width: 100%;
-            height: 200px;
+            height: 150px;
             object-fit: cover;
         }
         .card-content {
@@ -45,54 +49,73 @@
         .card-content a:hover {
             text-decoration: underline;
         }
+        .icon {
+            margin-right: 5px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
 
 <h1 style="text-align: center;">📰 Latest News from Our Channels</h1>
 <div class="carousel-container">
-    <div class="card">
-        <img src="https://via.placeholder.com/400x200?text=Twitter+News" alt="Twitter Update">
-        <div class="card-content">
-            <h3>Twitter Update</h3>
-            <p>Latest news from Twitter.</p>
-            <a href="https://twitter.com" target="_blank">Read more →</a>
+    <div class="carousel">
+        <div class="card">
+            <img src="https://via.placeholder.com/400x150?text=Twitter+News" alt="Twitter Update">
+            <div class="card-content">
+                <h3><img src="https://upload.wikimedia.org/wikipedia/en/6/60/Twitter_Logo_as_of_2021.svg" class="icon" width="20">Twitter Update</h3>
+                <p>Latest news from Twitter.</p>
+                <a href="https://twitter.com" target="_blank">Read more →</a>
+            </div>
         </div>
-    </div>
-    <div class="card">
-        <img src="https://via.placeholder.com/400x200?text=Instagram+Post" alt="Instagram Post">
-        <div class="card-content">
-            <h3>Instagram Post</h3>
-            <p>Check out our new update.</p>
-            <a href="https://instagram.com" target="_blank">Read more →</a>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x150?text=Instagram+Post" alt="Instagram Post">
+            <div class="card-content">
+                <h3><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="icon" width="20">Instagram Post</h3>
+                <p>Check out our new update.</p>
+                <a href="https://instagram.com" target="_blank">Read more →</a>
+            </div>
         </div>
-    </div>
-    <div class="card">
-        <img src="https://via.placeholder.com/400x200?text=Facebook+News" alt="Facebook News">
-        <div class="card-content">
-            <h3>Facebook News</h3>
-            <p>Follow us on Facebook for more.</p>
-            <a href="https://facebook.com" target="_blank">Read more →</a>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x150?text=Facebook+News" alt="Facebook News">
+            <div class="card-content">
+                <h3><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" class="icon" width="20">Facebook News</h3>
+                <p>Follow us on Facebook for more.</p>
+                <a href="https://facebook.com" target="_blank">Read more →</a>
+            </div>
         </div>
-    </div>
-    <div class="card">
-        <img src="https://via.placeholder.com/400x200?text=YouTube+Video" alt="YouTube Video">
-        <div class="card-content">
-            <h3>YouTube Video</h3>
-            <p>Watch our latest video.</p>
-            <a href="https://youtube.com" target="_blank">Read more →</a>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x150?text=YouTube+Video" alt="YouTube Video">
+            <div class="card-content">
+                <h3><img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" class="icon" width="20">YouTube Video</h3>
+                <p>Watch our latest video.</p>
+                <a href="https://youtube.com" target="_blank">Read more →</a>
+            </div>
         </div>
-    </div>
-    <div class="card">
-        <img src="https://via.placeholder.com/400x200?text=Blog+Update" alt="Blog Update">
-        <div class="card-content">
-            <h3>Blog Update</h3>
-            <p>Read our latest blog post.</p>
-            <a href="https://example.com/blog" target="_blank">Read more →</a>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x150?text=Blog+Update" alt="Blog Update">
+            <div class="card-content">
+                <h3><img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Globe_icon.svg" class="icon" width="20">Blog Update</h3>
+                <p>Read our latest blog post.</p>
+                <a href="https://example.com/blog" target="_blank">Read more →</a>
+            </div>
         </div>
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.carousel').slick({
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: true,
+        });
+    });
+</script>
+
 </body>
 </html>
-""
