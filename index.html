@@ -236,6 +236,19 @@
       color: #333;
     }
     
+    /* 📱 スマホ対応 */
+    @media screen and (max-width: 768px) {
+      .slideshow-container {
+        width: 100%; /* スマホ幅にフィット */
+        max-width: 100%;
+      }
+    
+      .slides img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    
     /* アイコンのスタイル */
     .database-icon {
       width: 75px;  /* 必要に応じて調整 */
