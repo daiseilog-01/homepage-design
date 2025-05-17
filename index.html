@@ -32,6 +32,7 @@
 
     /* メインフレーム */
     #main-frame {
+      width: 100%;
       max-width: 1200px;
       height: 100vh;
       margin: 0 auto;
@@ -81,11 +82,15 @@
 
     /* サービスセクション */
     #service-section {
-      background-color: #f8f9fa;
+      background-color: #f8f9fa; /* 背景は100% */
+      width: 100%;
+    }
+    
+    .service-container {
       max-width: 1200px;
       margin: 0 auto;
     }
-
+    
     .service-item {
       margin-bottom: 20px;
     }
@@ -362,28 +367,30 @@
 
   <!-- サービスセクション -->
   <section id="service-section">
-    <h2>サービス紹介</h2>
-  
-    <!-- スライドショーコンテナ -->
-    <div class="slideshow-container">
-      <div class="slides">
-        <img src="./slides/service1.png" alt="サービスイメージ">
-        <img src="./slides/service2.png" alt="サービスイメージ">
-        <img src="./slides/service3.png" alt="サービスイメージ">
-        <img src="./slides/service4.png" alt="サービスイメージ">
-      </div>
-      
-      <!-- 左右のナビゲーションボタン -->
-      <div class="prev" onclick="prevSlide()">&#10094;</div>
-      <div class="next" onclick="nextSlide()">&#10095;</div>
-      
-      <!-- ドットのインジケータ -->
-      <div class="dot-container">
-        <span class="dot" onclick="goToSlide(0)"></span>
-        <span class="dot" onclick="goToSlide(1)"></span>
-        <span class="dot" onclick="goToSlide(2)"></span>
-        <span class="dot" onclick="goToSlide(3)"></span>
-      </div>
+    <div class="service-container">
+      <h2>サービス紹介</h2>
+    
+      <!-- スライドショーコンテナ -->
+      <div class="slideshow-container">
+        <div class="slides">
+          <img src="./slides/service1.png" alt="サービスイメージ">
+          <img src="./slides/service2.png" alt="サービスイメージ">
+          <img src="./slides/service3.png" alt="サービスイメージ">
+          <img src="./slides/service4.png" alt="サービスイメージ">
+        </div>
+        
+        <!-- 左右のナビゲーションボタン -->
+        <div class="prev" onclick="prevSlide()">&#10094;</div>
+        <div class="next" onclick="nextSlide()">&#10095;</div>
+        
+        <!-- ドットのインジケータ -->
+        <div class="dot-container">
+          <span class="dot" onclick="goToSlide(0)"></span>
+          <span class="dot" onclick="goToSlide(1)"></span>
+          <span class="dot" onclick="goToSlide(2)"></span>
+          <span class="dot" onclick="goToSlide(3)"></span>
+        </div>
+      </div>  
     </div>
   </section>
   
