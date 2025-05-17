@@ -32,6 +32,7 @@
 
     /* メインフレーム */
     #main-frame {
+      display: block;
       width: 100%;
       max-width: 1200px;
       height: 100vh;
@@ -507,6 +508,7 @@
 
       // フェードアウト完了後、SVGの表示開始
       setTimeout(() => {
+        mainFrame.style.display = 'block'; 
         mainFrame.style.opacity = 1;
       }, 2000);
 
