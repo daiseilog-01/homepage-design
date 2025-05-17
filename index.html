@@ -57,25 +57,28 @@
       transform: translateY(0px);
     }
     
+    .section-title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+      margin-bottom: 10px; /* 線との間隔 */
+      position: relative;
+    }
+    
     .section-title {
       font-size: 28px;
-      margin-bottom: 20px;
-      position: relative;
-/*       display: block; */
-      display: flex; /* 横並びにする */
-      align-items: center; /* 垂直方向中央揃え */
-      gap: 10px; /* アイコンとの隙間 */
-      padding-bottom: 10px;
       color: #333;
-      text-align: left; /* 左寄せ */
-      max-width: 1200px;  /* 最大幅を設定 */
-      margin: 0 auto;  /* 横幅1200pxの中央に配置 */
+      text-align: left;
     }
     
     .section-icon {
-      width: 24px;   /* アイコンサイズ調整 */
-      height: 24px;
+      width: 30px;   /* アイコンサイズ調整 */
+      height: 30px;
+      fill: #003366;
     }
+    
     .section-title::after {
       content: "";
       display: block;
@@ -434,7 +437,11 @@
   <section id="service-section">
     <div class="service-container">
       <p class="section-subtitle">Our Services</p>
-      <h2 class="section-title"><img src="./icons/truck-solid.svg" alt="サービスアイコン" class="section-icon">サービス</h2>
+<!--       <h2 class="section-title"><img src="./icons/truck-solid.svg" alt="サービスアイコン" class="section-icon">サービス</h2> -->
+      <div class="section-title-wrapper">
+        <img src="./icons/truck-solid.svg" alt="サービスアイコン" class="section-icon">
+        <h2 class="section-title">サービス</h2>
+      </div>
     
       <!-- スライドショーコンテナ -->
       <div class="slideshow-container">
