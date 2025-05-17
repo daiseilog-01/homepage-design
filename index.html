@@ -152,22 +152,21 @@
     /* スライドショーのスタイル */
     .slideshow-container {
       position: relative;
-      width: 100%;
-      height: 500px; /* 必要に応じて調整してください */
+      width: 1200px; /* 横幅固定 */
+      margin: 0 auto;
       overflow: hidden;
     }
     
     .slides {
       display: flex;
       width: 100%;
-      height: 100%;
       position: relative;
       overflow: hidden;
     }
     
     .slides img {
       width: 100%;
-      height: 100%;
+      height: auto; /* 自動調整 */
       object-fit: cover;
       display: none;
     }
@@ -208,6 +207,7 @@
     .dot.active {
       background-color: #007bff;
     }
+
     
     /* データベースセクションのスタイル */
     #database-section {
