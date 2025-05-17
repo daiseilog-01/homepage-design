@@ -151,72 +151,58 @@
     
     /* スライドショーのスタイル */
     .slideshow-container {
-      width: 100%;
-      height: auto;
-      overflow: hidden;
-      margin-bottom: 20px;
       position: relative;
-      overflow: hidden; /* 横スクロールの発生を防ぐ */
+      width: 100%;
+      height: 500px; /* 必要に応じて調整してください */
+      overflow: hidden;
     }
     
     .slides {
       display: flex;
-      width: calc(100vw * 4); /* ← 4枚分の幅を100vw基準で計算 */
-      transition: transform 1s ease;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
     }
     
     .slides img {
-      max-width: 1200px;
-      height: auto;
-      margin: 0 auto;
-      object-fit: cover;
-    }
-    
-    /* 左右のナビゲーション */
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: 50px;
-      height: 50px;
-      margin-top: -25px;
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      user-select: none;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.5);
-      text-align: center;
-      line-height: 50px;
-      z-index: 2;
-    }
-    
-    .prev {
-      left: 20px;
-    }
-    
-    .next {
-      right: 20px;
-    }
-    
-    /* ドットインジケータ */
-    .dot-container {
-      text-align: center;
-      position: absolute;
-      bottom: 20px;
       width: 100%;
-      z-index: 2;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+    
+    .slides img.active {
+      display: block;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .dot-container {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
     }
     
     .dot {
-      cursor: pointer;
-      height: 15px;
-      width: 15px;
-      margin: 5px;
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 5px;
       background-color: #bbb;
       border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.3s ease;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
     
     .dot.active {
@@ -444,35 +430,32 @@
   <section id="service-section">
     <div class="service-container">
       <p class="section-subtitle">Our Services</p>
-<!--       <h2 class="section-title"><img src="./icons/truck-solid.svg" alt="サービスアイコン" class="section-icon">サービス</h2> -->
+  
       <div class="section-title-wrapper">
         <img src="./icons/truck-solid.svg" alt="サービスアイコン" class="section-icon">
         <h2 class="section-title">サービス</h2>
       </div>
-    
+      
       <!-- スライドショーコンテナ -->
       <div class="slideshow-container">
         <div class="slides">
-          <img src="./slides/service1.png" alt="サービスイメージ">
+          <img src="./slides/service1.png" alt="サービスイメージ" class="active">
           <img src="./slides/service2.png" alt="サービスイメージ">
           <img src="./slides/service3.png" alt="サービスイメージ">
           <img src="./slides/service4.png" alt="サービスイメージ">
         </div>
-        
-        <!-- 左右のナビゲーションボタン -->
-        <div class="prev" onclick="prevSlide()">&#10094;</div>
-        <div class="next" onclick="nextSlide()">&#10095;</div>
-        
+  
         <!-- ドットのインジケータ -->
         <div class="dot-container">
-          <span class="dot" onclick="goToSlide(0)"></span>
+          <span class="dot active" onclick="goToSlide(0)"></span>
           <span class="dot" onclick="goToSlide(1)"></span>
           <span class="dot" onclick="goToSlide(2)"></span>
           <span class="dot" onclick="goToSlide(3)"></span>
         </div>
-      </div>  
+      </div>
     </div>
   </section>
+
   
   <!-- データベースセクション -->
   <section id="database-section">
@@ -648,64 +631,44 @@
 
     // スライドショー処理
     document.addEventListener('DOMContentLoaded', () => {
-      const slides = document.querySelector('.slides');
-      const slideImages = document.querySelectorAll('.slides img');
+      const slides = document.querySelectorAll('.slides img');
       const dots = document.querySelectorAll('.dot');
       let currentIndex = 0;
       let interval;
     
-      // ✅ 修正部分：スライドの幅を計算する
-      const slideWidth = 100; // ← 100vw ずつ動かす
-    
-      // ✅ 修正部分：各スライドの幅を設定
-      slides.style.width = `${1200 * slideImages.length}px`;
-
-      // 自動スライド
+      // ✅ 自動スライド処理
       const startSlideshow = () => {
         interval = setInterval(() => {
-          nextSlide();
+          currentIndex = (currentIndex + 1) % slides.length;
+          showSlide(currentIndex);
         }, 5000); // 5秒ごとに切り替え
       };
     
-      // スライドの切り替え
+      // ✅ スライドの表示切り替え
       const showSlide = (index) => {
-        currentIndex = (index + slideImages.length) % slideImages.length;
-        slides.style.transform = `translateX(-${currentIndex * 100}vw)`; // ← 100vw ずつずらす
+        slides.forEach((slide, idx) => {
+          slide.classList.toggle('active', idx === index);
+        });
         updateDots();
       };
     
-      // ナビゲーションボタン
-      window.nextSlide = () => {
-        clearInterval(interval);
-        showSlide(currentIndex + 1);
-        startSlideshow();
-      };
-    
-      window.prevSlide = () => {
-        clearInterval(interval);
-        showSlide(currentIndex - 1);
-        startSlideshow();
-      };
-    
-      // ドットインジケータの更新
+      // ✅ ドットの表示切り替え
       const updateDots = () => {
         dots.forEach((dot, index) => {
-          if (index === currentIndex) {
-            dot.classList.add('active');
-          } else {
-            dot.classList.remove('active');
-          }
+          dot.classList.toggle('active', index === currentIndex);
         });
       };
     
-      // ドットクリックでスライド移動
+      // ✅ ドットクリック時のスライド移動
       window.goToSlide = (index) => {
         clearInterval(interval);
-        showSlide(index);
+        currentIndex = index;
+        showSlide(currentIndex);
         startSlideshow();
       };
     
-      // 初期化
+      // ✅ 初期化処理
+      showSlide(currentIndex);  // 最初のスライドを表示
       updateDots();
       startSlideshow();
     });
