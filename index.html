@@ -228,6 +228,38 @@
       object-fit: cover;
     }
     
+    /* ニュースセクションのスタイル */
+    #news-section {
+      background-color: #ffffff;
+      text-align: center;
+      padding: 60px 20px;
+      border-top: 1px solid #d3d3d3;
+    }
+    
+    .news-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .news-item {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .news-item h3 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+    
+    .news-item p {
+      color: #666;
+    }
+    
     /* 会社概要セクションのスタイル */
     #about-section {
       background-color: #003366; /* 濃い青 */
@@ -391,7 +423,19 @@
   <section id="mission-section">
     <img src="./greeting.png" alt="Greeting Image" class="mission-image">
   </section>
-
+  
+  <!-- ニュースセクション -->
+  <section id="news-section">
+    <h2>ニュース</h2>
+    <div class="news-container">
+      <!-- ニュース項目がここに追加されます -->
+      <div class="news-item">
+        <h3>新しい物流センターがオープンしました</h3>
+        <p>2025年5月17日 - 最新の設備を備えた物流センターがオープンしました。</p>
+      </div>
+    </div>
+  </section>
+  
   <!-- 会社概要セクション -->
 <section id="about-section">
   <div class="footer-content">
