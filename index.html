@@ -81,7 +81,7 @@
       width: 30px;   /* アイコンサイズ調整 */
       height: 30px;
       margin-top: 15px;
-      fill: #003366;
+      fill: #003366 !important;
     }
     
     .section-title::after {
@@ -696,8 +696,8 @@
 
     // 🔄 アイコンの色をタイトルの下の線と同じ色に変更
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.section-icon').forEach(icon => {
-        icon.style.fill = '#003366';  // タイトルの下の線と同じ色
+      document.querySelectorAll('.section-icon path').forEach(path => {
+        path.setAttribute('fill', '#003366');
       });
     });
     
