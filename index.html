@@ -80,8 +80,6 @@
     .section-icon {
       width: 30px;   /* アイコンサイズ調整 */
       height: 30px;
-      margin-top: 15px;
-      fill: #003366 !important;
     }
     
     .section-title::after {
@@ -692,13 +690,6 @@
       // 初期化
       updateDots();
       startSlideshow();
-    });
-
-    // 🔄 アイコンの色をタイトルの下の線と同じ色に変更
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.section-icon path').forEach(path => {
-        path.setAttribute('fill', '#003366');
-      });
     });
     
     // 🔄 カウンター処理（スクロール時に発動）
