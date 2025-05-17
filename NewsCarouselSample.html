@@ -65,11 +65,30 @@
         .icon-links img:hover {
             filter: none;
         }
+        .main-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .main-title::after {
+            content: "Latest News from Our Channels";
+            position: absolute;
+            font-size: 16px;
+            color: #555;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
 
-<h1 style="text-align: center;">📰 Latest News from Our Channels</h1>
+<h1 class="main-title">最新ニュース</h1>
+
 <div class="carousel-container">
     <div class="carousel">
         <div class="card">
