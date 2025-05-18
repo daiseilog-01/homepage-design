@@ -442,15 +442,31 @@
 
       <!-- Service Section を iframe で読み込む -->
       <iframe 
+        id="service-frame"
         src="./ServiceSectionUpdate.html" 
         width="100%" 
-        height="600px" 
         frameborder="0">
       </iframe>
       
     </div>
   </section>
+  
+  <script>
+    // iframe の高さを自動調整
+    const iframe = document.getElementById('service-frame');
+    const adjustIframeHeight = () => {
+      if (iframe.contentWindow.document.body) {
+        const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+        iframe.style.height = contentHeight + 'px';
+      }
+    };
 
+    // 読み込み後の高さ調整
+    iframe.onload = adjustIframeHeight;
+
+    // スマホの画面回転やリサイズ時も再計算
+    window.addEventListener('resize', adjustIframeHeight);
+  </script>
   
   <!-- データベースセクション -->
   <section id="database-section">
