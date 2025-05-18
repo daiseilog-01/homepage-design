@@ -200,7 +200,12 @@
       font-size: 1em; /* 見やすく調整 */
       margin-left: 5px;
     }
-    
+    @media screen and (max-width: 768px) {
+      .database-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+    }
     /* ミッションセクション */
     #mission-section {
         background-color: #f8f9fa;
