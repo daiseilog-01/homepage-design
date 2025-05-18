@@ -40,6 +40,8 @@
       object-fit: cover;
       opacity: 0;
       transition: opacity 0.5s ease 0s;
+      box-sizing: border-box; /* 🟢 追加: パディングも幅に含める */
+      overflow-x: hidden;     /* 🟢 追加: はみ出しを防ぐ */
     }
 
     /* セクション共通 */
@@ -152,9 +154,10 @@
     /* スライドショーのスタイル */
     .slideshow-container {
       position: relative;
-      width: 1200px; /* 横幅固定 */
+      max-width: 1200px;
       margin: 0 auto;
       overflow: hidden;
+      box-sizing: border-box; /* 🟢 追加: パディング考慮 */
     }
     
     .slides {
@@ -295,6 +298,7 @@
       height: auto;
       display: block;
       object-fit: cover;
+      box-sizing: border-box;
     }
     
     /* ニュースセクションのスタイル */
