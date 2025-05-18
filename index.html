@@ -445,36 +445,11 @@
         id="service-frame"
         src="./ServiceSectionUpdate.html" 
         width="100%"
-        height="600px" 
         frameborder="0">
       </iframe>
       
     </div>
   </section>
-  
-  <script>
-    // iframe の高さを自動調整
-    const iframe = document.getElementById('service-frame');
-    const adjustIframeHeight = () => {
-      if (iframe.contentWindow.document.body) {
-        const contentHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-        iframe.style.height = contentHeight + 'px';
-      }
-    };
-    // 読み込み後の高さ調整
-    iframe.onload = () => {
-      adjustIframeHeight();      
-      // MutationObserver で高さを監視
-      const observer = new MutationObserver(adjustIframeHeight);
-      observer.observe(iframe.contentWindow.document.body, {
-        attributes: true,
-        childList: true,
-        subtree: true
-      });
-    };
-    // スマホの画面回転やリサイズ時も再計算
-    window.addEventListener('resize', adjustIframeHeight);
-  </script>
   
   <!-- データベースセクション -->
   <section id="database-section">
@@ -665,7 +640,24 @@
       document.querySelectorAll('section').forEach(section => {
         observer.observe(section);
       });
+
+    // サービスセクションの高さ調整
+    const iframe = document.getElementById('service-frame');
+    
+    const adjustIframeHeight = () => {
+      if (window.innerWidth <= 768) {
+        iframe.style.height = "400px"; // スマホの場合
+      } else {
+        iframe.style.height = "400px"; // PCの場合
+      }
     };
+
+    // 初期表示時の高さ設定
+    adjustIframeHeight();
+
+    // 画面リサイズ時も再調整
+    window.addEventListener('resize', adjustIframeHeight);
+  };
     
     // 🔄 カウンター処理（スクロール時に発動）
     document.addEventListener('DOMContentLoaded', () => {
