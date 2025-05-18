@@ -211,7 +211,7 @@
     /* 📱 スマホ対応 */
     @media screen and (max-width: 768px) {
       .slideshow-container {
-        width: 100vw; /* スマホ幅にフィット */
+        width: calc(100vw - 10px); /* 10px 引くことでスクロールバー幅を考慮 */
         max-width: 100%;
         overflow: hidden;
       }
