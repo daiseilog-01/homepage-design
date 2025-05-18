@@ -138,8 +138,8 @@
     /* スマホ表示用の縦長調整 */
     @media screen and (max-width: 768px) {
       #background-video {
-        top: 0px;
-        right: 10px;
+        top: 20px;
+        right: 20px;
         border-radius: 20px;
         width: 60vw;
         height: 60vh;        /* 縦いっぱいに拡大 */
@@ -148,11 +148,18 @@
       }
     }
     
+    /* ナビゲーションパネルのスタイル */
     #navigation-panel {
       display: flex;
       justify-content: center;
       gap: 20px;
-      margin-top: 20px;
+      position: absolute; /* 💡 絶対配置 */
+      bottom: 5vh;        /* 💡 画面下から5%の位置 */
+      right: 5vw;         /* 💡 画面右から5%の位置 */
+      z-index: 2;         /* 💡 動画・SVGの上に表示 */
+      background-color: rgba(0, 0, 0, 0.5); /* 💡 半透明の背景 */
+      border-radius: 12px;
+      padding: 10px 15px;
     }
 
     .nav-card {
