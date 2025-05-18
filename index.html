@@ -156,7 +156,7 @@
       max-width: 1200px;
       margin: 0 auto;
       overflow: hidden;
-      box-sizing: border-box; /* 🟢 追加: パディング考慮 */
+      box-sizing: border-box;
     }
     
     .slides {
@@ -168,7 +168,7 @@
     
     .slides img {
       width: 100%;
-      height: auto; /* 自動調整 */
+      height: auto;
       object-fit: cover;
       display: none;
     }
@@ -188,18 +188,15 @@
     }
     
     .dot-container {
-      position: absolute;
-      bottom: 15px;
-      width: 100%;
+      margin-top: 15px;
       text-align: center;
-      z-index: 10;
     }
     
     .dot {
       display: inline-block;
-      width: 10px;
-      height: 10px;
-      margin: 0 5px;
+      width: 15px;
+      height: 15px;
+      margin: 0 10px;
       background-color: #bbb;
       border-radius: 50%;
       cursor: pointer;
@@ -688,6 +685,12 @@
         startSlideshow();
       };
     
+      // ドットにイベントを追加（タップも含む）
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+        dot.addEventListener('touchstart', () => goToSlide(index)); // ← スマホ対応
+      });
+      
       // ✅ 初期化処理
       showSlide(currentIndex);  // 最初のスライドを表示
       updateDots();
