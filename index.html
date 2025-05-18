@@ -574,15 +574,16 @@
     function updateSVG() {
       const mainFrame = document.getElementById('main-frame');
       if (window.innerWidth <= 768) {
-        mainFrame.data = './logo-frame_sp.svg';
+        mainFrame.setAttribute('data', './logo-frame_sp.svg');
       } else {
-        mainFrame.data = './logo-frame.svg';
+        mainFrame.setAttribute('data', './logo-frame.svg');
       }
     }
 
     window.onload = () => {
       const logo = document.getElementById('logo');
       const topSection = document.getElementById('top-section');
+      const mainFrame = document.getElementById('main-frame'); 
       
       // 初期表示のSVGを設定
       updateSVG();
