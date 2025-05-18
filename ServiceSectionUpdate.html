@@ -30,8 +30,8 @@
 
     .thumbnail {
       width: 150px;
-      height: 85px; /* 🟢 高さを調整 */
-      background-size: cover; /* 🟢 カバーに戻す */
+      height: 85px;
+      background-size: cover;
       background-position: center;
       border-radius: 8px;
       cursor: pointer;
@@ -88,6 +88,39 @@
 
     .main-slide img.active {
       opacity: 1;
+      animation: dissolve 0.5s ease-in-out;
+    }
+
+    /* 🟢 ディソルブエフェクト追加 */
+    @keyframes dissolve {
+      0% {
+        filter: blur(5px) opacity(0);
+      }
+      100% {
+        filter: blur(0px) opacity(1);
+      }
+    }
+
+    /* 🟢 パルスアニメーションの追加 */
+    .main-slide::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      background: rgba(0, 123, 255, 0.2);
+      animation: pulseEffect 5s infinite ease-in-out;
+    }
+
+    @keyframes pulseEffect {
+      0%, 100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.4;
+      }
     }
   </style>
 </head>
