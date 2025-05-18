@@ -215,15 +215,16 @@
         max-width: 100%;
         overflow: hidden;
       }
-     /* ここを追加する */
       .slides {
         display: flex;
-        width: 100%; /* 画面幅に合わせる */
+        width: 100%;
+        overflow: hidden;
       }
       .slides img {
-        width: 100%;
+        width: 100vw;
         height: auto;
         object-fit: cover;
+        flex-shrink: 0; /* はみ出し防止 */
       }
     }
     
