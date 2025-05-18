@@ -295,44 +295,8 @@
     }
     
     .news-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
       max-width: 1200px;
       margin: 0 auto;
-    }
-    
-    .news-item {
-      background-color: #f8f9fa;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    .news-item h3 {
-      margin-bottom: 10px;
-      color: #333;
-    }
-    
-    .news-item p {
-      color: #666;
-    }
-    
-    .icon-links {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
-    .icon-links a {
-        margin: 0 10px;
-    }
-    .icon-links img {
-        width: 30px;
-        height: 30px;
-        filter: grayscale(100%);
-    }
-    .icon-links img:hover {
-        filter: none;
     }
     
     /* 会社概要セクションのスタイル */
@@ -438,8 +402,8 @@
   <!-- サービスセクション -->
   <section id="service-section">
     <div class="service-container">
-      <p class="section-subtitle">Our Services</p>
-  
+      
+      <p class="section-subtitle">Our Services</p>  
       <div class="section-title-wrapper">
         <img src="./icons/truck-solid.svg" alt="サービスアイコン" class="section-icon">
         <h2 class="section-title">サービス</h2>
@@ -496,8 +460,7 @@
   <!-- ミッションセクション -->
   <section id="mission-section">
       <div class="mission-container">
-          <p class="section-subtitle">Our Mission</p>
-  
+          <p class="section-subtitle">Our Mission</p>  
           <div class="section-title-wrapper">
               <img src="./icons/flag-solid.svg" alt="ミッションアイコン" class="section-icon">
               <h2 class="section-title">ミッション</h2>
@@ -526,25 +489,22 @@
   
   <!-- ニュースセクション -->
   <section id="news-section">
-    <p class="section-subtitle">Latest News</p>
-<!--     <h2 class="section-title">ニュース</h2> -->
-    <div class="section-title-wrapper">
-      <img src="./icons/newspaper-solid.svg" alt="ニュースアイコン" class="section-icon">
-      <h2 class="section-title">ニュース</h2>
-    </div>
     <div class="news-container">
-      <!-- ニュース項目がここに追加されます -->
-      <div class="news-item">
-        <h3>新しい物流センターがオープンしました</h3>
-        <p>2025年5月17日 - 最新の設備を備えた物流センターがオープンしました。</p>
+      
+      <p class="section-subtitle">Latest News</p>
+      <div class="section-title-wrapper">
+        <img src="./icons/newspaper-solid.svg" alt="ニュースアイコン" class="section-icon">
+        <h2 class="section-title">ニュース</h2>
       </div>
-    </div>
-    <div class="icon-links">
-        <a href="https://x.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/X_icon_2.svg" alt="X"></a>
-        <a href="https://instagram.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
-        <a href="https://facebook.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
-        <a href="https://youtube.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube"></a>
-        <a href="https://example.com/blog" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Wordpress-Logo.svg" alt="WordPress Blog"></a>
+
+      <!-- news Section を iframe で読み込む -->
+      <iframe 
+        id="news-frame"
+        src="./NewsCarouselSample.html" 
+        width="100%"
+        frameborder="0">
+      </iframe>
+      
     </div>
   </section>
   
@@ -647,8 +607,7 @@
       });
 
     // サービスセクションの高さ調整
-    const iframe = document.getElementById('service-frame');
-    
+    const iframe = document.getElementById('service-frame');    
     const adjustIframeHeight = () => {
       if (window.innerWidth <= 768) {
         iframe.style.height = "350px"; // スマホの場合
@@ -656,12 +615,25 @@
         iframe.style.height = "450px"; // PCの場合
       }
     };
-
     // 初期表示時の高さ設定
     adjustIframeHeight();
-
     // 画面リサイズ時も再調整
     window.addEventListener('resize', adjustIframeHeight);
+
+    // 🟢 Newsセクションの高さ調整
+    const newsIframe = document.getElementById('news-frame');    
+    const adjustNewsIframeHeight = () => {
+      if (window.innerWidth <= 768) {
+        newsIframe.style.height = "400px"; // スマホの場合
+      } else {
+        newsIframe.style.height = "400px"; // PCの場合
+      }
+    };    
+    // 初期表示時の高さ設定
+    adjustNewsIframeHeight();    
+    // 画面リサイズ時も再調整
+    window.addEventListener('resize', adjustNewsIframeHeight);
+      
   };
     
     // 🔄 カウンター処理（スクロール時に発動）
