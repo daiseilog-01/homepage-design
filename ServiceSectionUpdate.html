@@ -71,7 +71,7 @@
       opacity: 1;
     }
 
-    /* 🟢 スマホ対応：横並び + 下にメイン表示 */
+    /* 🟢 スマホ対応：横スクロールに変更 */
     @media screen and (max-width: 768px) {
       .service-container {
         flex-direction: column;
@@ -80,14 +80,16 @@
       }
 
       .service-thumbnails {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
         gap: 5px;
-        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 10px;
       }
 
       .thumbnail {
         height: 70px;
+        min-width: 160px;
+        flex-shrink: 0;
       }
 
       .main-slide {
