@@ -149,15 +149,15 @@
     }
     
     /* ナビゲーションパネルのスタイル */
-    #navigation-panel {
+/*     #navigation-panel {
       display: flex;
       justify-content: center;
       gap: 20px;
-      position: absolute; /* 💡 絶対配置 */
-      bottom: 5vh;        /* 💡 画面下から5%の位置 */
-      right: 5vw;         /* 💡 画面右から5%の位置 */
-      z-index: 2;         /* 💡 動画・SVGの上に表示 */
-      background-color: rgba(0, 0, 0, 0.5); /* 💡 半透明の背景 */
+      position: absolute; 
+      bottom: 5vh;        
+      right: 5vw;       
+      z-index: 2;      
+      background-color: rgba(0, 0, 0, 0.5);
       border-radius: 12px;
       padding: 10px 15px;
     }
@@ -173,8 +173,48 @@
 
     .nav-card:hover {
       background-color: #0056b3;
+    } */
+
+    #floating-nav {
+        position: absolute;
+        bottom: 3vh;
+        right: 5vw;
+        display: flex;
+        gap: 25px;
+        background-color: rgba(0, 51, 102, 0.9);
+        backdrop-filter: blur(5px);
+        padding: 12px 18px;
+        border-radius: 16px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
     }
 
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        font-size: 14px;
+        color: #ffffff;
+        transition: color 0.3s ease;
+    }
+
+    .nav-item .jp {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .nav-item:hover {
+        color: #a0c4ff;
+        cursor: pointer;
+    }
+
+    .nav-item.contact {
+        color: #ff6b6b;
+    }
+
+    .nav-item.careers {
+        color: #ffd93d;
+    }
     /* サービスセクション */
     #service-section {
       background-color: #f8f9fa; /* 背景は100% */
@@ -438,12 +478,42 @@
     </video>
     
     <!-- ナビゲーションパネル -->
-    <div id="navigation-panel">
+<!--     <div id="navigation-panel">
       <a class="nav-card" href="#service-section">サービス</a>
       <a class="nav-card" href="#database-section">データベース</a>
       <a class="nav-card" href="#mission-section">ミッション</a>
       <a class="nav-card" href="#news-section">ニュース</a>
       <a class="nav-card" href="#about-section">サイトマップ</a>
+    </div> -->
+    <div id="floating-nav">
+        <div class="nav-item">
+            <span class="jp">サービス</span>
+            <span class="en">Service</span>
+        </div>
+        <div class="nav-item">
+            <span class="jp">データベース</span>
+            <span class="en">Database</span>
+        </div>
+        <div class="nav-item">
+            <span class="jp">ミッション</span>
+            <span class="en">Mission</span>
+        </div>
+        <div class="nav-item">
+            <span class="jp">ニュース</span>
+            <span class="en">News</span>
+        </div>
+        <div class="nav-item">
+            <span class="jp">サイトマップ</span>
+            <span class="en">Sitemap</span>
+        </div>
+        <div class="nav-item contact">
+            <span class="jp">お問合せ</span>
+            <span class="en">Contact</span>
+        </div>
+        <div class="nav-item careers">
+            <span class="jp">採用</span>
+            <span class="en">Careers</span>
+        </div>
     </div>
   </section>
 
