@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Section Update</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .service-container {
+      display: flex;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-thumbnails {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .thumbnail {
+      width: 180px;
+      height: 100px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .main-slide {
+      width: 800px;
+      height: 500px;
+      border-radius: 12px;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.5s ease-in-out;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="service-container">
+    <div class="service-thumbnails">
+      <div class="thumbnail" style="background-image: url('./slides/service1.png');" onclick="showSlide(0)"></div>
+      <div class="thumbnail" style="background-image: url('./slides/service2.png');" onclick="showSlide(1)"></div>
+      <div class="thumbnail" style="background-image: url('./slides/service3.png');" onclick="showSlide(2)"></div>
+      <div class="thumbnail" style="background-image: url('./slides/service4.png');" onclick="showSlide(3)"></div>
+    </div>
+    <div class="main-slide" id="mainSlide" style="background-image: url('./slides/service1.png');"></div>
+  </div>
+
+  <script>
+    const slides = [
+      './slides/service1.png',
+      './slides/service2.png',
+      './slides/service3.png',
+      './slides/service4.png'
+    ];
+
+    let currentIndex = 0;
+    const mainSlide = document.getElementById('mainSlide');
+
+    function showSlide(index) {
+      currentIndex = index;
+      mainSlide.style.backgroundImage = `url(${slides[index]})`;
+    }
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }, 5000);
+  </script>
+</body>
+</html>
