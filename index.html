@@ -150,90 +150,6 @@
       margin-bottom: 20px;
     }
     
-    /* スライドショーのスタイル */
-    .slideshow-container {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-      overflow: hidden;
-      box-sizing: border-box;
-    }
-    
-    .slides {
-      display: flex;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .slides img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      display: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: box-shadow 0.3s ease;
-    }
-    
-    .slides img:hover {
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
-    .slides img.active {
-      display: block;
-      animation: fadeIn 3s ease-in-out;
-    }
-    
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-    
-    .dot-container {
-      margin-top: 15px;
-      text-align: center;
-    }
-    
-    .dot {
-      display: inline-block;
-      width: 15px;
-      height: 15px;
-      margin: 0 10px;
-      background-color: #bbb;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      touch-action: manipulation; /* タッチ操作を明確に許可 */
-    }
-    
-    .dot.active {
-      background-color: #007bff;
-    }
-
-    /* 📱 スマホ対応 */
-    @media screen and (max-width: 768px) {
-      .slideshow-container {
-/*         width: 100%; */
-        max-width: 100%;
-        overflow: hidden;
-      }
-      .slides {
-        display: flex;
-        width: 100%;
-        overflow: hidden;
-      }
-      .slides img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        flex-shrink: 0; /* はみ出し防止 */
-      }
-    }
-    
     /* データベースセクションのスタイル */
     #database-section {
       background-color: #f1f3f4;
@@ -532,23 +448,6 @@
         frameborder="0">
       </iframe>
       
-      <!-- スライドショーコンテナ -->
-      <div class="slideshow-container">
-        <div class="slides">
-          <img src="./slides/service1.png" alt="サービスイメージ" class="active">
-          <img src="./slides/service2.png" alt="サービスイメージ">
-          <img src="./slides/service3.png" alt="サービスイメージ">
-          <img src="./slides/service4.png" alt="サービスイメージ">
-        </div>
-  
-        <!-- ドットのインジケータ -->
-        <div class="dot-container">
-          <span class="dot active" onclick="goToSlide(0)"></span>
-          <span class="dot" onclick="goToSlide(1)"></span>
-          <span class="dot" onclick="goToSlide(2)"></span>
-          <span class="dot" onclick="goToSlide(3)"></span>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -743,64 +642,6 @@
         observer.observe(section);
       });
     };
-
-    // スライドショー処理
-    document.addEventListener('DOMContentLoaded', () => {
-      const slides = document.querySelectorAll('.slides img');
-      const dots = document.querySelectorAll('.dot');
-      let currentIndex = 0;
-      let interval;
-    
-      // ✅ 自動スライド処理
-      const startSlideshow = () => {
-        interval = setInterval(() => {
-          currentIndex = (currentIndex + 1) % slides.length;
-          showSlide(currentIndex);
-        }, 6000); // 5秒ごとに切り替え
-      };
-    
-      // ✅ スライドの表示切り替え
-      const showSlide = (index) => {
-        slides.forEach((slide, idx) => {
-          slide.classList.toggle('active', idx === index);
-        });
-        updateDots();
-      };
-    
-      // ✅ ドットの表示切り替え
-      const updateDots = () => {
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentIndex);
-        });
-      };
-    
-      // ✅ ドットクリック時のスライド移動
-      window.goToSlide = (index) => {
-        clearInterval(interval);
-        currentIndex = index;
-        showSlide(currentIndex);
-        startSlideshow();
-      };
-    
-      // ドットにイベントを追加（タップも含む）
-      dots.forEach((dot, index) => {
-        // 📱 モバイル対応
-        dot.addEventListener('touchend', (e) => {
-          e.preventDefault(); // デフォルト動作の防止（ダブルタップズームなど）
-          goToSlide(index);
-        });
-    
-        // 💻 PC対応
-        dot.addEventListener('click', (e) => {
-          goToSlide(index);
-        });
-      });
-      
-      // ✅ 初期化処理
-      showSlide(currentIndex);  // 最初のスライドを表示
-      updateDots();
-      startSlideshow();
-    });
     
     // 🔄 カウンター処理（スクロール時に発動）
     document.addEventListener('DOMContentLoaded', () => {
