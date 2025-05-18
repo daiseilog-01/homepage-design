@@ -687,8 +687,7 @@
     
       // ドットにイベントを追加（タップも含む）
       dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => goToSlide(index));
-        dot.addEventListener('touchstart', () => goToSlide(index)); // ← スマホ対応
+        dot.addEventListener('touchend', () => goToSlide(index)); // ← スマホ対応
       });
       
       // ✅ 初期化処理
