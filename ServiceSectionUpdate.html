@@ -94,6 +94,10 @@
         aspect-ratio: 16 / 9;
         flex-shrink: 0;
         scroll-snap-align: start;
+        object-fit: contain; /* 👈 ここを 'contain' に変更 */
+        background-size: contain; /* 👈 背景のサイズ調整 */
+        background-repeat: no-repeat; /* 👈 繰り返しを無効 */
+        background-position: center; /* 👈 センタリング */
       }
 
       .main-slide {
