@@ -45,19 +45,6 @@
       border: 2px solid #007bff;
       transform: scale(1.05);
       box-shadow: 0 0 15px rgba(0, 123, 255, 0.5), 0 0 25px rgba(0, 123, 255, 0.3);
-      animation: pulse 1s ease-out;
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 15px rgba(0, 123, 255, 0.5), 0 0 25px rgba(0, 123, 255, 0.3);
-      }
-      50% {
-        box-shadow: 0 0 25px rgba(0, 123, 255, 0.7), 0 0 35px rgba(0, 123, 255, 0.5);
-      }
-      100% {
-        box-shadow: 0 0 15px rgba(0, 123, 255, 0.5), 0 0 25px rgba(0, 123, 255, 0.3);
-      }
     }
 
     .main-slide {
@@ -77,49 +64,12 @@
       object-fit: cover;
       position: absolute;
       opacity: 0;
-      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+      transition: opacity 0.5s ease-in-out;
     }
 
     .main-slide img.active {
       opacity: 1;
-      animation: slideZoom 1s ease-in-out;
     }
-
-    /* 🟢 カッコイイ演出：スライド時にズームインとフェード */
-    @keyframes slideZoom {
-      0% {
-        transform: scale(0.9);
-        filter: blur(5px);
-      }
-      100% {
-        transform: scale(1);
-        filter: blur(0px);
-      }
-    }
-
-    /* 🟢 光のスキャンエフェクト */
-    .main-slide::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: 0;
-      width: 100%;
-      height: 200%;
-      background: rgba(255, 255, 255, 0.2);
-      transform: rotate(45deg);
-      animation: scanEffect 3s infinite linear;
-      z-index: 2;
-    }
-
-    @keyframes scanEffect {
-      0% {
-        top: -50%;
-      }
-      100% {
-        top: 150%;
-      }
-    }
-
   </style>
 </head>
 <body>
@@ -150,10 +100,6 @@
 
       thumbnails.forEach((thumb, idx) => {
         thumb.classList.toggle('active', idx === index);
-        if (idx === index) {
-          thumb.classList.add('pulse');
-          setTimeout(() => thumb.classList.remove('pulse'), 1000);
-        }
       });
 
       currentIndex = index;
