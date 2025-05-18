@@ -37,6 +37,7 @@
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
       border: 2px solid transparent;
+      object-fit: cover;
     }
 
     .thumbnail.active {
@@ -62,22 +63,37 @@
       width: 800px;
       height: 500px;
       border-radius: 12px;
-      background-size: cover;
+      background-size: contain;
       background-position: center;
-      transition: background-image 0.5s ease-in-out;
+      background-repeat: no-repeat;
+      transition: opacity 0.5s ease-in-out;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      animation: pulseBackground 5s infinite alternate;
+    }
+
+    @keyframes pulseBackground {
+      0% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      50% {
+        box-shadow: 0 8px 30px rgba(0, 123, 255, 0.3);
+      }
+      100% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
     }
   </style>
 </head>
 <body>
   <div class="service-container">
     <div class="service-thumbnails">
-      <div class="thumbnail active" style="background-image: url('./slides/service1.png');" onclick="showSlide(0)"></div>
-      <div class="thumbnail" style="background-image: url('./slides/service2.png');" onclick="showSlide(1)"></div>
-      <div class="thumbnail" style="background-image: url('./slides/service3.png');" onclick="showSlide(2)"></div>
-      <div class="thumbnail" style="background-image: url('./slides/service4.png');" onclick="showSlide(3)"></div>
+      <div class="thumbnail active" onclick="showSlide(0)" style="background-image: url('./slides/service1.png');"></div>
+      <div class="thumbnail" onclick="showSlide(1)" style="background-image: url('./slides/service2.png');"></div>
+      <div class="thumbnail" onclick="showSlide(2)" style="background-image: url('./slides/service3.png');"></div>
+      <div class="thumbnail" onclick="showSlide(3)" style="background-image: url('./slides/service4.png');"></div>
     </div>
-    <div class="main-slide" id="mainSlide" style="background-image: url('./slides/service1.png');"></div>
+    <div class="main-slide" id="mainSlide" style="background-image: url('./slides/service1.png'); opacity: 1;"></div>
   </div>
 
   <script>
@@ -94,7 +110,12 @@
 
     function showSlide(index) {
       currentIndex = index;
-      mainSlide.style.backgroundImage = `url(${slides[index]})`;
+      mainSlide.style.opacity = '0';
+      setTimeout(() => {
+        mainSlide.style.backgroundImage = `url(${slides[index]})`;
+        mainSlide.style.opacity = '1';
+      }, 300);
+
       thumbnails.forEach((thumb, idx) => {
         thumb.classList.toggle('active', idx === index);
         if (idx === index) {
