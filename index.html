@@ -711,33 +711,59 @@
       const speed = 50; // カウントアップのスピード
       
       // IntersectionObserver の設定
+      // const counterObserver = new IntersectionObserver((entries, observer) => {
+      //   entries.forEach(entry => {
+      //     if (entry.isIntersecting) {
+      //       const counter = entry.target;
+      //       const target = +counter.getAttribute('data-target');
+      //       const unit = counter.getAttribute('data-unit') || ""; 
+      //       const increment = Math.ceil(target / speed);
+    
+      //       const updateCount = () => {
+      //         const count = +counter.querySelector('.value')?.textContent.replace(/,/g, "") || 0;
+      //         if (count < target) {
+      //           counter.innerHTML = `<span class="value">${(count + increment).toLocaleString()}</span> <span class="unit">${unit}</span>`;
+      //           setTimeout(updateCount, 30);
+      //         } else {
+      //           counter.innerHTML = `<span class="value">${target.toLocaleString()}</span> <span class="unit">${unit}</span>`;
+      //           observer.unobserve(counter);
+      //         }
+      //       };
+  
+      //       counter.innerHTML = `<span class="value">0</span> <span class="unit">${unit}</span>`;
+      //       updateCount();
+      //     }
+      //   });
+      // });
+      
+      const updateCount = (counter, target, unit) => {
+        let current = 0;
+        const step = Math.ceil(target / speed);
+    
+        const increment = () => {
+          if (current < target) {
+            current += step;
+            if (current > target) current = target;
+            counter.innerHTML = `<span class="value">${current.toLocaleString()}</span> <span class="unit">${unit}</span>`;
+            requestAnimationFrame(increment);
+          }
+        };
+    
+        increment();
+      };
+    
       const counterObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const counter = entry.target;
             const target = +counter.getAttribute('data-target');
-            const unit = counter.getAttribute('data-unit') || ""; // data-unit 取得
-            const increment = Math.ceil(target / speed);
-    
-            // カウントアップの処理
-            const updateCount = () => {
-              const count = +counter.querySelector('.value')?.textContent.replace(/,/g, "") || 0;
-              if (count < target) {
-                counter.innerHTML = `<span class="value">${(count + increment).toLocaleString()}</span> <span class="unit">${unit}</span>`;
-                setTimeout(updateCount, 30);
-              } else {
-                counter.innerHTML = `<span class="value">${target.toLocaleString()}</span> <span class="unit">${unit}</span>`;
-                observer.unobserve(counter); // 監視解除
-              }
-            };
-    
-            // 初期表示を正しくする
-            counter.innerHTML = `<span class="value">0</span> <span class="unit">${unit}</span>`;
-            updateCount();
+            const unit = counter.getAttribute('data-unit') || "";
+            updateCount(counter, target, unit);
+            observer.unobserve(counter); // 監視解除
           }
         });
       });
-
+      
       // カウンターを監視対象に追加
       counters.forEach(counter => {
         counterObserver.observe(counter);
