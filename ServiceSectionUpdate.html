@@ -35,12 +35,17 @@
       background-position: center;
       border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+      border: 2px solid transparent;
     }
 
     .thumbnail:hover {
       transform: scale(1.05);
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .thumbnail.active {
+      border: 2px solid #007bff;
     }
 
     .main-slide {
@@ -57,7 +62,7 @@
 <body>
   <div class="service-container">
     <div class="service-thumbnails">
-      <div class="thumbnail" style="background-image: url('./slides/service1.png');" onclick="showSlide(0)"></div>
+      <div class="thumbnail active" style="background-image: url('./slides/service1.png');" onclick="showSlide(0)"></div>
       <div class="thumbnail" style="background-image: url('./slides/service2.png');" onclick="showSlide(1)"></div>
       <div class="thumbnail" style="background-image: url('./slides/service3.png');" onclick="showSlide(2)"></div>
       <div class="thumbnail" style="background-image: url('./slides/service4.png');" onclick="showSlide(3)"></div>
@@ -75,10 +80,14 @@
 
     let currentIndex = 0;
     const mainSlide = document.getElementById('mainSlide');
+    const thumbnails = document.querySelectorAll('.thumbnail');
 
     function showSlide(index) {
       currentIndex = index;
       mainSlide.style.backgroundImage = `url(${slides[index]})`;
+      thumbnails.forEach((thumb, idx) => {
+        thumb.classList.toggle('active', idx === index);
+      });
     }
 
     setInterval(() => {
