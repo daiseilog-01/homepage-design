@@ -25,13 +25,13 @@
     .service-thumbnails {
       display: flex;
       flex-direction: column;
-      gap: 8px; /* ちょっとだけ狭く */
+      gap: 8px;
     }
 
     .thumbnail {
-      width: 150px; /* さらに一回り小さく */
-      height: 95px;  /* 高さも微調整 */
-      background-size: cover;
+      width: 150px;
+      height: 90px; /* 高さ調整 */
+      background-size: contain; /* 枠内に収める */
       background-position: center;
       border-radius: 8px;
       cursor: pointer;
@@ -44,7 +44,7 @@
     .thumbnail img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* 枠内に収める */
     }
 
     .thumbnail.active {
