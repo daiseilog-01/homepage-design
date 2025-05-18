@@ -30,8 +30,8 @@
 
     .thumbnail {
       width: 150px;
-      height: 90px; /* 高さ調整 */
-      background-size: contain; /* 枠内に収める */
+      height: 85px; /* 🟢 高さを調整 */
+      background-size: cover; /* 🟢 カバーに戻す */
       background-position: center;
       border-radius: 8px;
       cursor: pointer;
@@ -44,7 +44,7 @@
     .thumbnail img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* 枠内に収める */
+      object-fit: cover;
     }
 
     .thumbnail.active {
