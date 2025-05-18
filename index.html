@@ -34,14 +34,10 @@
     #main-frame {
       display: block;
       width: 100%;
-      max-width: 1200px;
-      height: 100vh;
-      margin: 0 auto;
-      object-fit: cover;
+      height: auto;
+      box-sizing: border-box;
       opacity: 0;
       transition: opacity 0.5s ease 0s;
-      box-sizing: border-box; /* 🟢 追加: パディングも幅に含める */
-      overflow-x: hidden;     /* 🟢 追加: はみ出しを防ぐ */
     }
 
     /* セクション共通 */
@@ -113,7 +109,15 @@
     
     /* トップセクション */
     #top-section {
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;                    /* 全幅 */
+      height: auto;                    /* SVGの高さに依存する */
+      margin-left: calc(50% - 50vw);   /* 中央揃え */
+      opacity: 0;                      /* 初期は非表示 */
+      transition: opacity 1s ease;
     }
 
     #navigation-panel {
@@ -384,18 +388,20 @@
 </head>
 <body>
 
-  <!-- ロゴ表示 -->
+  <!-- ロゴ表示（ふわっと消える） -->
   <img id="logo" src="./logo.png" />
 
-  <!-- メインフレーム -->
-  <object id="main-frame" type="image/svg+xml"></object>
-
   <!-- トップセクション -->
-  <section id="top-section">
+  <section id="top-section"> 
+    <!-- メインフレーム -->
+    <object id="main-frame" type="image/svg+xml"></object>
+    <!-- ナビゲーションパネル -->
     <div id="navigation-panel">
       <a class="nav-card" href="#service-section">サービス</a>
+      <a class="nav-card" href="#database-section">データベース</a>
       <a class="nav-card" href="#mission-section">ミッション</a>
-      <a class="nav-card" href="#about-section">会社概要</a>
+      <a class="nav-card" href="#news-section">ニュース</a>
+      <a class="nav-card" href="#about-section">サイトマップ</a>
     </div>
   </section>
 
@@ -509,7 +515,7 @@
     </div>
   </section>
   
-  <!-- 会社概要セクション -->
+  <!-- サイト案内セクション -->
 <section id="about-section">
     <p class="section-subtitle" style="color: #777;">Site Navigation</p>
     <div class="section-title-wrapper">
@@ -576,7 +582,7 @@
 
     window.onload = () => {
       const logo = document.getElementById('logo');
-      const mainFrame = document.getElementById('main-frame');
+      const topSection = document.getElementById('top-section');
       
       // 初期表示のSVGを設定
       updateSVG();
@@ -589,7 +595,8 @@
 
       // フェードアウト完了後、SVGの表示開始
       setTimeout(() => {
-        mainFrame.style.display = 'block'; 
+        logo.style.display = 'none';
+        topSection.style.opacity = 1;
         mainFrame.style.opacity = 1;
       }, 2000);
 
@@ -602,10 +609,12 @@
         });
       });
 
-      // 監視対象のセクションを追加
-      document.querySelectorAll('section').forEach(section => {
+    // 監視対象のセクションを追加
+    document.querySelectorAll('section').forEach(section => {
+      if (section.id !== 'top-section') {
         observer.observe(section);
-      });
+      }
+    });
 
     // サービスセクションの高さ調整
     const iframe = document.getElementById('service-frame');    
