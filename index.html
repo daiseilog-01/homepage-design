@@ -215,6 +215,41 @@
     .nav-item.careers {
         color: #ffd93d;
     }
+    /* スマホ表示のハンバーガーメニュー */
+    #hamburger {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: #003366;
+        border-radius: 50%;
+        color: white;
+        font-size: 24px;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+    }
+    
+    #hamburger.active + #floating-nav {
+        display: block;
+        flex-direction: column;
+        gap: 10px;
+        right: auto;
+        bottom: 80px;
+        left: 20px;
+        background-color: rgba(0, 51, 102, 0.95);
+    }
+    
+    @media screen and (max-width: 768px) {
+        #floating-nav {
+            display: none;
+        }
+        #hamburger {
+            display: flex;
+        }
+    }
     /* サービスセクション */
     #service-section {
       background-color: #f8f9fa; /* 背景は100% */
@@ -799,6 +834,19 @@
       counters.forEach(counter => {
         counterObserver.observe(counter);
       });
+    });
+    
+    /* スマホ表示のハンバーガーメニュー */
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('floating-nav');
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        if (hamburger.classList.contains('active')) {
+            nav.style.display = 'flex';
+        } else {
+            nav.style.display = 'none';
+        }
     });
   </script>
 
