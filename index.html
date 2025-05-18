@@ -514,14 +514,39 @@
   </section>
 
   <!-- ミッションセクション -->
-  <section id="mission-section">
+<!--   <section id="mission-section">
     <p class="section-subtitle">Our Mission</p>
-<!--     <h2 class="section-title">ミッション</h2> -->
     <div class="section-title-wrapper">
       <img src="./icons/flag-solid.svg" alt="ミッションアイコン" class="section-icon">
       <h2 class="section-title">ミッション</h2>
     </div>
     <img src="./slides/mission1.png" alt="Greeting Image" class="mission-image">
+  </section> -->
+  
+  <!-- ミッションセクション -->
+  <section id="mission-section">
+    <div class="mission-container">
+      <p class="mission-subtitle">Our Mission</p>
+  
+      <div class="section-title-wrapper">
+        <img src="./icons/flag-solid.svg" alt="ミッションアイコン" class="section-icon">
+        <h2 class="section-title">ミッション</h2>
+      </div>
+      
+      <!-- ミッションスライドショーコンテナ -->
+      <div class="mission-slideshow-container">
+        <div class="mission-slides">
+          <img src="./slides/mission1.png" alt="ミッションイメージ" class="active">
+          <img src="./slides/mission2.png" alt="ミッションイメージ">
+        </div>
+  
+        <!-- ミッションドットのインジケータ -->
+        <div class="mission-dot-container">
+          <span class="dot active" onclick="goToMissionSlide(0)"></span>
+          <span class="dot" onclick="goToMissionSlide(1)"></span>
+        </div>
+      </div>
+    </div>
   </section>
   
   <!-- ニュースセクション -->
