@@ -70,6 +70,40 @@
     .main-slide img.active {
       opacity: 1;
     }
+    /* 🟢 スマホ対応：縦に4枚フル表示 */
+    @media screen and (max-width: 768px) {
+      .service-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+    
+      .service-thumbnails {
+        display: none;
+      }
+    
+      .main-slide {
+        display: none;
+      }
+    
+      .full-slide {
+        display: grid;
+        gap: 10px;
+        width: 100%;
+      }
+    
+      .full-slide img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+    }
+    
+    /* 🟢 PC表示：縦並びは非表示 */
+    @media screen and (min-width: 769px) {
+      .full-slide {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -82,6 +116,13 @@
     </div>
     <div class="main-slide" id="mainSlide">
       <img src="./slides/service1.png" class="active">
+      <img src="./slides/service2.png">
+      <img src="./slides/service3.png">
+      <img src="./slides/service4.png">
+    </div>
+    <!-- スマホ表示用 -->
+    <div class="full-slide">
+      <img src="./slides/service1.png">
       <img src="./slides/service2.png">
       <img src="./slides/service3.png">
       <img src="./slides/service4.png">
