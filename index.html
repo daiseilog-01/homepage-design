@@ -502,7 +502,8 @@
         id="news-frame"
         src="./NewsCarouselSample.html" 
         width="100%"
-        frameborder="0">
+        frameborder="0"
+        scrolling="no">
       </iframe>
       
     </div>
@@ -628,6 +629,7 @@
       } else {
         newsIframe.style.height = "450px"; // PCの場合
       }
+      newsIframe.contentWindow.document.body.style.overflow = 'hidden';
     };    
     // 初期表示時の高さ設定
     adjustNewsIframeHeight();    
