@@ -80,21 +80,21 @@
       }
 
       .service-thumbnails {
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
         gap: 5px;
-        justify-content: space-between;
+        width: 100%;
       }
 
       .thumbnail {
-        width: 24%;
-        height: auto;
-        flex-shrink: 0;
+        height: 70px;
       }
 
       .main-slide {
         width: 100%;
         height: auto;
         max-width: 100%;
+        aspect-ratio: 16 / 9;
       }
     }
   </style>
