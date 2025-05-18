@@ -41,12 +41,6 @@
       overflow: hidden;
     }
 
-    .thumbnail img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     .thumbnail.active {
       border: 2px solid #007bff;
       transform: scale(1.05);
@@ -83,48 +77,49 @@
       object-fit: cover;
       position: absolute;
       opacity: 0;
-      transition: opacity 0.5s ease-in-out;
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
     }
 
     .main-slide img.active {
       opacity: 1;
-      animation: dissolve 0.5s ease-in-out;
+      animation: slideZoom 1s ease-in-out;
     }
 
-    /* 🟢 ディソルブエフェクト追加 */
-    @keyframes dissolve {
+    /* 🟢 カッコイイ演出：スライド時にズームインとフェード */
+    @keyframes slideZoom {
       0% {
-        filter: blur(5px) opacity(0);
+        transform: scale(0.9);
+        filter: blur(5px);
       }
       100% {
-        filter: blur(0px) opacity(1);
+        transform: scale(1);
+        filter: blur(0px);
       }
     }
 
-    /* 🟢 過剰なエフェクト */
+    /* 🟢 光のスキャンエフェクト */
     .main-slide::after {
       content: "";
       position: absolute;
-      top: 0;
+      top: -50%;
       left: 0;
       width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      background: rgba(0, 123, 255, 0.5);
-      animation: heavyPulseEffect 2s infinite ease-in-out;
-      z-index: 1;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(45deg);
+      animation: scanEffect 3s infinite linear;
+      z-index: 2;
     }
 
-    @keyframes heavyPulseEffect {
-      0%, 100% {
-        opacity: 0.2;
-        transform: scale(1);
+    @keyframes scanEffect {
+      0% {
+        top: -50%;
       }
-      50% {
-        opacity: 0.7;
-        transform: scale(1.05);
+      100% {
+        top: 150%;
       }
     }
+
   </style>
 </head>
 <body>
