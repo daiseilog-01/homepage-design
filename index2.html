@@ -40,6 +40,8 @@
       object-fit: cover;
       opacity: 0;
       transition: opacity 0.5s ease 0s;
+      box-sizing: border-box; /* 🟢 追加: パディングも幅に含める */
+      overflow-x: hidden;     /* 🟢 追加: はみ出しを防ぐ */
     }
 
     /* セクション共通 */
@@ -137,7 +139,6 @@
     /* サービスセクション */
     #service-section {
       background-color: #f8f9fa; /* 背景は100% */
-      width: 100%;
     }
     
     .service-container {
@@ -151,76 +152,86 @@
     
     /* スライドショーのスタイル */
     .slideshow-container {
-      width: 100%;
-      height: auto;
-      overflow: hidden;
-      margin-bottom: 20px;
       position: relative;
-      overflow: hidden; /* 横スクロールの発生を防ぐ */
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+      box-sizing: border-box;
     }
     
     .slides {
       display: flex;
-      width: calc(100vw * 4); /* ← 4枚分の幅を100vw基準で計算 */
-      transition: transform 1s ease;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
     }
     
     .slides img {
-      max-width: 1200px;
-      height: auto;
-      margin: 0 auto;
-      object-fit: cover;
-    }
-    
-    /* 左右のナビゲーション */
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: 50px;
-      height: 50px;
-      margin-top: -25px;
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      user-select: none;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.5);
-      text-align: center;
-      line-height: 50px;
-      z-index: 2;
-    }
-    
-    .prev {
-      left: 20px;
-    }
-    
-    .next {
-      right: 20px;
-    }
-    
-    /* ドットインジケータ */
-    .dot-container {
-      text-align: center;
-      position: absolute;
-      bottom: 20px;
       width: 100%;
-      z-index: 2;
+      height: auto;
+      object-fit: cover;
+      display: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    
+    .slides img:hover {
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    .slides img.active {
+      display: block;
+      animation: fadeIn 3s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .dot-container {
+      margin-top: 15px;
+      text-align: center;
     }
     
     .dot {
-      cursor: pointer;
-      height: 15px;
+      display: inline-block;
       width: 15px;
-      margin: 5px;
+      height: 15px;
+      margin: 0 10px;
       background-color: #bbb;
       border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.3s ease;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      touch-action: manipulation; /* タッチ操作を明確に許可 */
     }
     
     .dot.active {
       background-color: #007bff;
+    }
+
+    /* 📱 スマホ対応 */
+    @media screen and (max-width: 768px) {
+      .slideshow-container {
+/*         width: 100%; */
+        max-width: 100%;
+        overflow: hidden;
+      }
+      .slides {
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+      }
+      .slides img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        flex-shrink: 0; /* はみ出し防止 */
+      }
     }
     
     /* データベースセクションのスタイル */
@@ -276,20 +287,83 @@
     
     /* ミッションセクション */
     #mission-section {
-      background-color: #f8f9fa;
-      position: relative;
-      margin: 0;
-      overflow: hidden;
-      width: 100%;
-      height: auto;
+        background-color: #f8f9fa;
+        padding: 60px 20px;
     }
-    
-    .mission-image {
+
+    .mission-container {
       max-width: 1200px;
       margin: 0 auto;
-      height: auto;
-      display: block;
+    }
+
+    .mission-cards {
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    .mission-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      flex: 1;
+    }
+    
+    .mission-card img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+    }
+
+    .mission-card:hover {
+      transform: scale(1.03);
+    }
+
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 15px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mission-card:hover .card-overlay {
+      opacity: 1;
+    }
+
+    .card-overlay h3 {
+      margin-bottom: 10px;
+      font-size: 1.5em;
+    }
+
+    .card-overlay p {
+      font-size: 1.1em;
+      line-height: 1.4em;
+    }
+    /* 🟢 スマホサイズで縦並びに変更 */
+    @media screen and (max-width: 768px) {
+      .mission-cards {
+        display: block;
+        width: 100%;
+        overflow-x: hidden;
+      }
+      .mission-card {
+        margin-bottom: 20px;
+        aspect-ratio: 16 / 9;
+      }
+      .mission-card img {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+        box-sizing: border-box;
+      }
     }
     
     /* ニュースセクションのスタイル */
@@ -444,35 +518,32 @@
   <section id="service-section">
     <div class="service-container">
       <p class="section-subtitle">Our Services</p>
-<!--       <h2 class="section-title"><img src="./icons/truck-solid.svg" alt="サービスアイコン" class="section-icon">サービス</h2> -->
+  
       <div class="section-title-wrapper">
         <img src="./icons/truck-solid.svg" alt="サービスアイコン" class="section-icon">
         <h2 class="section-title">サービス</h2>
       </div>
-    
+      
       <!-- スライドショーコンテナ -->
       <div class="slideshow-container">
         <div class="slides">
-          <img src="./slides/service1.png" alt="サービスイメージ">
+          <img src="./slides/service1.png" alt="サービスイメージ" class="active">
           <img src="./slides/service2.png" alt="サービスイメージ">
           <img src="./slides/service3.png" alt="サービスイメージ">
           <img src="./slides/service4.png" alt="サービスイメージ">
         </div>
-        
-        <!-- 左右のナビゲーションボタン -->
-        <div class="prev" onclick="prevSlide()">&#10094;</div>
-        <div class="next" onclick="nextSlide()">&#10095;</div>
-        
+  
         <!-- ドットのインジケータ -->
         <div class="dot-container">
-          <span class="dot" onclick="goToSlide(0)"></span>
+          <span class="dot active" onclick="goToSlide(0)"></span>
           <span class="dot" onclick="goToSlide(1)"></span>
           <span class="dot" onclick="goToSlide(2)"></span>
           <span class="dot" onclick="goToSlide(3)"></span>
         </div>
-      </div>  
+      </div>
     </div>
   </section>
+
   
   <!-- データベースセクション -->
   <section id="database-section">
@@ -513,13 +584,33 @@
 
   <!-- ミッションセクション -->
   <section id="mission-section">
-    <p class="section-subtitle">Our Mission</p>
-<!--     <h2 class="section-title">ミッション</h2> -->
-    <div class="section-title-wrapper">
-      <img src="./icons/flag-solid.svg" alt="ミッションアイコン" class="section-icon">
-      <h2 class="section-title">ミッション</h2>
-    </div>
-    <img src="./slides/mission1.png" alt="Greeting Image" class="mission-image">
+      <div class="mission-container">
+          <p class="section-subtitle">Our Mission</p>
+  
+          <div class="section-title-wrapper">
+              <img src="./icons/flag-solid.svg" alt="ミッションアイコン" class="section-icon">
+              <h2 class="section-title">ミッション</h2>
+          </div>
+  
+          <!-- タイトルの下にカードが並ぶように修正 -->
+          <div class="mission-cards">
+            <div class="mission-card">
+              <img src="./slides/mission1.png" alt="Mission Image 1">
+              <div class="card-overlay">
+                <h3>Mission Title 1</h3>
+                <p>ここにミッションの説明文が入ります。重要な取り組みや価値観を説明してください。</p>
+              </div>
+            </div>
+    
+            <div class="mission-card">
+              <img src="./slides/mission2.png" alt="Mission Image 2">
+              <div class="card-overlay">
+                <h3>Mission Title 2</h3>
+                <p>ここにミッションの説明文が入ります。重要な取り組みや価値観を説明してください。</p>
+              </div>
+            </div>
+          </div>
+      </div>
   </section>
   
   <!-- ニュースセクション -->
@@ -573,10 +664,9 @@
     <!-- 会社情報 -->
     <div class="footer-column">
       <img src="./logomono.png" alt="Company Logomono" class="company-logomono">
-      <h3>Daisei Logistics Co., Ltd.</h3>
-      <p>〒000-0000 東京都文京区本駒込5-28-7</p>
-      <p>TEL: 00-0000-0000</p>
-      <p>FAX: 00-0000-0000</p>
+      <h3>ダイセーロジスティクス株式会社</h3>
+      <p>〒000-0000</p>
+      <p>東京都文京区本駒込5-28-7</p>
     </div>
 
     <!-- 各種リンク -->
@@ -648,64 +738,58 @@
 
     // スライドショー処理
     document.addEventListener('DOMContentLoaded', () => {
-      const slides = document.querySelector('.slides');
-      const slideImages = document.querySelectorAll('.slides img');
+      const slides = document.querySelectorAll('.slides img');
       const dots = document.querySelectorAll('.dot');
       let currentIndex = 0;
       let interval;
     
-      // ✅ 修正部分：スライドの幅を計算する
-      const slideWidth = 100; // ← 100vw ずつ動かす
-    
-      // ✅ 修正部分：各スライドの幅を設定
-      slides.style.width = `${1200 * slideImages.length}px`;
-
-      // 自動スライド
+      // ✅ 自動スライド処理
       const startSlideshow = () => {
         interval = setInterval(() => {
-          nextSlide();
-        }, 5000); // 5秒ごとに切り替え
+          currentIndex = (currentIndex + 1) % slides.length;
+          showSlide(currentIndex);
+        }, 6000); // 5秒ごとに切り替え
       };
     
-      // スライドの切り替え
+      // ✅ スライドの表示切り替え
       const showSlide = (index) => {
-        currentIndex = (index + slideImages.length) % slideImages.length;
-        slides.style.transform = `translateX(-${currentIndex * 100}vw)`; // ← 100vw ずつずらす
+        slides.forEach((slide, idx) => {
+          slide.classList.toggle('active', idx === index);
+        });
         updateDots();
       };
     
-      // ナビゲーションボタン
-      window.nextSlide = () => {
-        clearInterval(interval);
-        showSlide(currentIndex + 1);
-        startSlideshow();
-      };
-    
-      window.prevSlide = () => {
-        clearInterval(interval);
-        showSlide(currentIndex - 1);
-        startSlideshow();
-      };
-    
-      // ドットインジケータの更新
+      // ✅ ドットの表示切り替え
       const updateDots = () => {
         dots.forEach((dot, index) => {
-          if (index === currentIndex) {
-            dot.classList.add('active');
-          } else {
-            dot.classList.remove('active');
-          }
+          dot.classList.toggle('active', index === currentIndex);
         });
       };
     
-      // ドットクリックでスライド移動
+      // ✅ ドットクリック時のスライド移動
       window.goToSlide = (index) => {
         clearInterval(interval);
-        showSlide(index);
+        currentIndex = index;
+        showSlide(currentIndex);
         startSlideshow();
       };
     
-      // 初期化
+      // ドットにイベントを追加（タップも含む）
+      dots.forEach((dot, index) => {
+        // 📱 モバイル対応
+        dot.addEventListener('touchend', (e) => {
+          e.preventDefault(); // デフォルト動作の防止（ダブルタップズームなど）
+          goToSlide(index);
+        });
+    
+        // 💻 PC対応
+        dot.addEventListener('click', (e) => {
+          goToSlide(index);
+        });
+      });
+      
+      // ✅ 初期化処理
+      showSlide(currentIndex);  // 最初のスライドを表示
       updateDots();
       startSlideshow();
     });
@@ -715,34 +799,34 @@
       const counters = document.querySelectorAll('.counter');
       const speed = 50; // カウントアップのスピード
       
-      // IntersectionObserver の設定
+      const updateCount = (counter, target, unit) => {
+        let current = 0;
+        const step = Math.ceil(target / speed);
+    
+        const increment = () => {
+          if (current < target) {
+            current += step;
+            if (current > target) current = target;
+            counter.innerHTML = `<span class="value">${current.toLocaleString()}</span> <span class="unit">${unit}</span>`;
+            requestAnimationFrame(increment);
+          }
+        };
+    
+        increment();
+      };
+    
       const counterObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const counter = entry.target;
             const target = +counter.getAttribute('data-target');
-            const unit = counter.getAttribute('data-unit') || ""; // data-unit 取得
-            const increment = Math.ceil(target / speed);
-    
-            // カウントアップの処理
-            const updateCount = () => {
-              const count = +counter.querySelector('.value')?.textContent.replace(/,/g, "") || 0;
-              if (count < target) {
-                counter.innerHTML = `<span class="value">${(count + increment).toLocaleString()}</span> <span class="unit">${unit}</span>`;
-                setTimeout(updateCount, 30);
-              } else {
-                counter.innerHTML = `<span class="value">${target.toLocaleString()}</span> <span class="unit">${unit}</span>`;
-                observer.unobserve(counter); // 監視解除
-              }
-            };
-    
-            // 初期表示を正しくする
-            counter.innerHTML = `<span class="value">0</span> <span class="unit">${unit}</span>`;
-            updateCount();
+            const unit = counter.getAttribute('data-unit') || "";
+            updateCount(counter, target, unit);
+            observer.unobserve(counter); // 監視解除
           }
         });
       });
-
+      
       // カウンターを監視対象に追加
       counters.forEach(counter => {
         counterObserver.observe(counter);
