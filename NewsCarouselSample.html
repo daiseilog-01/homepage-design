@@ -100,6 +100,41 @@
         .card-content a:hover {
             text-decoration: underline;
         }
+        
+        /* カスタムボタン */
+        .custom-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #007bff, #00d4ff);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+    
+        .custom-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+        }
+    
+        .custom-button svg {
+            margin-left: 8px;
+            fill: white;
+            transition: transform 0.3s ease;
+        }
+    
+        .custom-button:hover svg {
+            transform: translateX(2px);
+        }
+
+        /* 各種アイコン集 */
         .icon-links {
             display: flex;
             justify-content: center;
@@ -151,6 +186,13 @@
                     <a href="https://www.daisei-log.com/topics/" target="_blank">Read more →</a>
                 </div>
             </div>
+            
+            <a href="https://www.daisei-log.com/topics/" target="_blank" class="custom-button">
+                Read More
+                <svg width="16" height="16" viewBox="0 0 24 24">
+                    <path d="M13.172 11H4a1 1 0 1 0 0 2h9.172l-3.95 3.95a1 1 0 0 0 1.414 1.414l5.657-5.657a1 1 0 0 0 0-1.414l-5.657-5.657a1 1 0 1 0-1.414 1.414L13.172 11z"></path>
+                </svg>
+            </a>
             
 <!--             <a href="https://www.daisei-log.com/topics/" target="_blank">
                 <div class="card">
