@@ -286,60 +286,59 @@
     }
 
     .mission-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        gap: 20px;
-        justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .mission-cards {
-        display: flex;
-        gap: 20px;
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
     }
 
     .mission-card {
-        position: relative;
-        overflow: hidden;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      flex: 1;
     }
-
+    
     .mission-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
     }
 
     .mission-card:hover {
-        transform: scale(1.03);
+      transform: scale(1.03);
     }
 
     .card-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        padding: 15px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 15px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .mission-card:hover .card-overlay {
-        opacity: 1;
+      opacity: 1;
     }
 
     .card-overlay h3 {
-        margin-bottom: 10px;
-        font-size: 1.2em;
+      margin-bottom: 10px;
+      font-size: 1.5em;
     }
 
     .card-overlay p {
-        font-size: 0.9em;
-        line-height: 1.4em;
+      font-size: 1.1em;
+      line-height: 1.4em;
     }
     
     /* ニュースセクションのスタイル */
@@ -568,21 +567,23 @@
               <h2 class="section-title">ミッション</h2>
           </div>
   
+          <!-- タイトルの下にカードが並ぶように修正 -->
           <div class="mission-cards">
-              <div class="mission-card">
-                  <img src="./slides/mission1.png" alt="Mission Image 1">
-                  <div class="card-overlay">
-                      <h3>Mission Title 1</h3>
-                      <p>ここにミッションの説明文が入ります。重要な取り組みや価値観を説明してください。</p>
-                  </div>
+            <div class="mission-card">
+              <img src="./slides/mission1.png" alt="Mission Image 1">
+              <div class="card-overlay">
+                <h3>Mission Title 1</h3>
+                <p>ここにミッションの説明文が入ります。重要な取り組みや価値観を説明してください。</p>
               </div>
-              <div class="mission-card">
-                  <img src="./slides/mission2.png" alt="Mission Image 2">
-                  <div class="card-overlay">
-                      <h3>Mission Title 2</h3>
-                      <p>ここにミッションの説明文が入ります。重要な取り組みや価値観を説明してください。</p>
-                  </div>
+            </div>
+    
+            <div class="mission-card">
+              <img src="./slides/mission2.png" alt="Mission Image 2">
+              <div class="card-overlay">
+                <h3>Mission Title 2</h3>
+                <p>ここにミッションの説明文が入ります。重要な取り組みや価値観を説明してください。</p>
               </div>
+            </div>
           </div>
       </div>
   </section>
