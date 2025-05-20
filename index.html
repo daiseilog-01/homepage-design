@@ -35,12 +35,19 @@
     #main-frame {
       display: block;
       width: 100%;
-      height: 100%;
+      height: auto;
       box-sizing: border-box;
       opacity: 0;
       transition: opacity 0.5s ease 0s;
     }
 
+    /* スマホ版だけ縦長の比率にする */
+    @media screen and (max-width: 768px) {
+      #main-frame {
+        aspect-ratio: 393 / 577;
+      }
+    }
+    
     /* セクション共通 */
     section {
       padding: 60px 20px;
