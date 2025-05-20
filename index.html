@@ -35,7 +35,7 @@
     #main-frame {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
       box-sizing: border-box;
       opacity: 0;
       transition: opacity 0.5s ease 0s;
@@ -147,6 +147,12 @@
         object-fit: cover;    /* アスペクト比を保ちながらはみ出し部分を隠す */
         overflow: hidden;
         border: 2px solid #d3d3d3;
+      }
+    }
+    
+    @media screen and (max-width: 768px) {
+      #top-section {
+        min-height: 100vh;
       }
     }
     
