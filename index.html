@@ -772,23 +772,24 @@
         }
         video.load(); // ソース変更後に再読み込み
         video.play();
-      }, 2000);
-
-      // IntersectionObserver でふわっと表示
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
+        
+          // IntersectionObserver でふわっと表示
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+              }
+            });
+          });
+    
+        // 監視対象のセクションを追加
+        document.querySelectorAll('section').forEach(section => {
+          if (section.id !== 'top-section') {
+            observer.observe(section);
           }
         });
-      });
-
-    // 監視対象のセクションを追加
-    document.querySelectorAll('section').forEach(section => {
-      if (section.id !== 'top-section') {
-        observer.observe(section);
-      }
-    });
+        
+      }, 2000);
 
     // サービスセクションの高さ調整
     const iframe = document.getElementById('service-frame');    
