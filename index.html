@@ -513,7 +513,7 @@
     
     <!-- 背景動画 -->
     <video autoplay loop muted playsinline id="background-video">
-      <source src="./video-dlog.mp4" type="video/mp4">
+      <source id="video-source" src="./video-dlog.mp4" type="video/mp4">
       お使いのブラウザは動画をサポートしていません。
     </video>
     
@@ -755,6 +755,14 @@
         logo.style.display = 'none';
         topSection.style.opacity = 1;
         mainFrame.style.opacity = 1;
+        // 💡 スマホかどうかで動画を切り替える
+        const videoSource = document.getElementById('video-source');
+        if (window.innerWidth <= 768) {
+          videoSource.setAttribute('src', './video-dlog_sp.mp4');
+        } else {
+          videoSource.setAttribute('src', './video-dlog.mp4');
+        }
+        video.load(); // ソース変更後に再読み込み
         video.play();
       }, 2000);
 
