@@ -249,7 +249,7 @@
         overflow: visible;
     }    
     /* ✅ 光が一周するリングエフェクト */
-    #hamburger::before {
+/*     #hamburger::before {
       content: "";
       position: absolute;
       box-sizing: border-box;
@@ -272,7 +272,7 @@
         transform: rotate(360deg);
         box-shadow: 0 0 14px 6px rgba(0, 102, 204, 0.8);
       }
-    }
+    } */
     
     #hamburger.active + #floating-nav {
         display: flex;
@@ -858,17 +858,13 @@
     // 画面リサイズ時も再調整
     window.addEventListener('resize', adjustNewsIframeHeight);
       
-  };
-    
-    // 🔄 カウンター処理（スクロール時に発動）
-    document.addEventListener('DOMContentLoaded', () => {
+    // ✅ onload の末尾にこのカウンター処理を追加（←ここが正しい）
       const counters = document.querySelectorAll('.counter');
-      const speed = 50; // カウントアップのスピード
-      
+      const speed = 50;
+    
       const updateCount = (counter, target, unit) => {
         let current = 0;
         const step = Math.ceil(target / speed);
-    
         const increment = () => {
           if (current < target) {
             current += step;
@@ -877,7 +873,6 @@
             requestAnimationFrame(increment);
           }
         };
-    
         increment();
       };
     
@@ -888,16 +883,54 @@
             const target = +counter.getAttribute('data-target');
             const unit = counter.getAttribute('data-unit') || "";
             updateCount(counter, target, unit);
-            observer.unobserve(counter); // 監視解除
+            observer.unobserve(counter);
           }
         });
       });
-      
-      // カウンターを監視対象に追加
+    
       counters.forEach(counter => {
         counterObserver.observe(counter);
       });
-    });
+            
+  };
+    
+    // 🔄 カウンター処理（スクロール時に発動）
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   const counters = document.querySelectorAll('.counter');
+    //   const speed = 50; // カウントアップのスピード
+      
+    //   const updateCount = (counter, target, unit) => {
+    //     let current = 0;
+    //     const step = Math.ceil(target / speed);
+    
+    //     const increment = () => {
+    //       if (current < target) {
+    //         current += step;
+    //         if (current > target) current = target;
+    //         counter.innerHTML = `<span class="value">${current.toLocaleString()}</span> <span class="unit">${unit}</span>`;
+    //         requestAnimationFrame(increment);
+    //       }
+    //     };
+    
+    //     increment();
+    //   };
+    
+    //   const counterObserver = new IntersectionObserver((entries, observer) => {
+    //     entries.forEach(entry => {
+    //       if (entry.isIntersecting) {
+    //         const counter = entry.target;
+    //         const target = +counter.getAttribute('data-target');
+    //         const unit = counter.getAttribute('data-unit') || "";
+    //         updateCount(counter, target, unit);
+    //         observer.unobserve(counter);
+    //       }
+    //     });
+    //   });
+      
+    //   counters.forEach(counter => {
+    //     counterObserver.observe(counter);
+    //   });
+    // });
     
     /* スマホ表示のハンバーガーメニュー */
     const hamburger = document.getElementById('hamburger');
